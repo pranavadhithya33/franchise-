@@ -24,18 +24,18 @@
           </div>
         </a>
 
-        <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+        <!-- Navigation Links -->
+        <ul class="nav-menu" id="main-nav-menu" style="display: none;">
+          <!-- Dynamically injected via script.js -->
+        </ul>
+
+        <div style="display: flex; align-items: center; gap: 6px; flex-shrink: 0;">
           <div class="user-status-pill" id="user-status-pill">
             <span id="user-status-text">🔒 Logged Out</span>
           </div>
           <button class="logout-btn" id="btn-logout" style="display: none;" onclick="logoutUser()">LOGOUT</button>
         </div>
       </div>
-
-      <!-- Navigation Links -->
-      <ul class="nav-menu" id="main-nav-menu" style="display: none;">
-        <!-- Dynamically injected via script.js -->
-      </ul>
     </div>
   </header>
 
