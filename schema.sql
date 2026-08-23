@@ -1,10 +1,10 @@
 -- ==========================================================================
--- BREAKING BAD FRANCHISE NETWORK - SUPABASE DATABASE SCHEMA
+-- GUS ENTERPRISE DUAL FRANCHISE NETWORK - SUPABASE DATABASE SCHEMA
 -- Execute this SQL script in your Supabase SQL Editor
 -- ==========================================================================
 
--- 1. Create Franchises Table
-CREATE TABLE IF NOT EXISTS franchises (
+-- 1. Create B2B Wholesale Franchises Table
+CREATE TABLE IF NOT EXISTS b2b_franchises (
   id VARCHAR(50) PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   location VARCHAR(255) NOT NULL,
@@ -13,10 +13,10 @@ CREATE TABLE IF NOT EXISTS franchises (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- 2. Create Orders Table
-CREATE TABLE IF NOT EXISTS orders (
+-- 2. Create B2B Wholesale Orders Table
+CREATE TABLE IF NOT EXISTS b2b_orders (
   id VARCHAR(50) PRIMARY KEY,
-  franchise_id VARCHAR(50) REFERENCES franchises(id) ON DELETE CASCADE,
+  franchise_id VARCHAR(50) REFERENCES b2b_franchises(id) ON DELETE CASCADE,
   customer_name VARCHAR(255) NOT NULL,
   item_details TEXT NOT NULL,
   revenue_amount NUMERIC(12, 2) NOT NULL DEFAULT 0,
@@ -24,31 +24,54 @@ CREATE TABLE IF NOT EXISTS orders (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- 3. Seed Default Franchise Partners
-INSERT INTO franchises (id, name, location, pin, type) VALUES
-('FRAN-SIVAGANGAI', 'Vinoth (Master Partner)', 'Sivagangai', '9842', 'Master'),
-('FRAN-CHENNAI', 'Rajesh Kumar', 'Chennai Central', '1234', 'Micro'),
-('FRAN-MADURAI', 'Karthik Raja', 'Madurai West', '2345', 'Micro'),
-('FRAN-COIMBATORE', 'Anitha Ramesh', 'Coimbatore RS Puram', '3456', 'Micro'),
-('FRAN-SALEM', 'Selvam Subramanian', 'Salem Junction', '4567', 'Micro'),
-('FRAN-TRICHY', 'Manikandan P', 'Trichy Cantt', '5678', 'Micro')
+-- 3. Create B2C Retail Store Franchises Table
+CREATE TABLE IF NOT EXISTS b2c_franchises (
+  id VARCHAR(50) PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  location VARCHAR(255) NOT NULL,
+  pin VARCHAR(10) NOT NULL,
+  type VARCHAR(50) DEFAULT 'Retail Store',
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 4. Create B2C Retail Store Orders Table
+CREATE TABLE IF NOT EXISTS b2c_orders (
+  id VARCHAR(50) PRIMARY KEY,
+  franchise_id VARCHAR(50) REFERENCES b2c_franchises(id) ON DELETE CASCADE,
+  customer_name VARCHAR(255) NOT NULL,
+  item_details TEXT NOT NULL,
+  revenue_amount NUMERIC(12, 2) NOT NULL DEFAULT 0,
+  status VARCHAR(50) DEFAULT 'Pending',
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 5. Seed B2B Franchises
+INSERT INTO b2b_franchises (id, name, location, pin, type) VALUES
+('FRAN-SIVAGANGAI', 'Vinoth (B2B Master Partner)', 'Sivagangai Wholesale Hub', '9842', 'Master'),
+('FRAN-CHENNAI', 'Rajesh Kumar', 'Chennai Central Wholesale', '1234', 'Micro'),
+('FRAN-MADURAI', 'Karthik Raja', 'Madurai West Hub', '2345', 'Micro'),
+('FRAN-COIMBATORE', 'Anitha Ramesh', 'Coimbatore RS Puram Hub', '3456', 'Micro')
 ON CONFLICT (id) DO NOTHING;
 
--- 4. Seed Initial Orders
-INSERT INTO orders (id, franchise_id, customer_name, item_details, revenue_amount, status) VALUES
-('ORD-1001', 'FRAN-SIVAGANGAI', 'Saul Goodman', 'iPhone 15 Pro Max 256GB', 125000, 'Finished'),
-('ORD-1002', 'FRAN-SIVAGANGAI', 'Gustavo Fring', 'Samsung Galaxy S24 Ultra', 110000, 'Finished'),
-('ORD-1003', 'FRAN-CHENNAI', 'Walter White', 'MacBook Pro 14 M3', 165000, 'Finished'),
-('ORD-1004', 'FRAN-MADURAI', 'Jesse Pinkman', 'iPad Pro 12.9 M2', 95000, 'Finished'),
-('ORD-1005', 'FRAN-COIMBATORE', 'Mike Ehrmantraut', 'OnePlus 12 512GB', 65000, 'Processing'),
-('ORD-1006', 'FRAN-SALEM', 'Hank Schrader', 'Sony WH-1000XM5', 28000, 'Pending')
+-- 6. Seed B2C Retail Franchises
+INSERT INTO b2c_franchises (id, name, location, pin, type) VALUES
+('RETAIL-TRICHY', 'Senthil Nathan (B2C Retail Owner)', 'Trichy Main Road Outlet', '8811', 'Retail Store'),
+('RETAIL-MADURAI', 'Meenakshi Sundaram', 'Madurai Temple View Outlet', '7722', 'Retail Store'),
+('RETAIL-CHENNAI', 'Praveen V', 'Chennai T.Nagar Outlet', '6633', 'Retail Store')
 ON CONFLICT (id) DO NOTHING;
 
--- Enable Row Level Security (RLS) & Public Read Policies
-ALTER TABLE franchises ENABLE ROW LEVEL SECURITY;
-ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
+-- Enable Row Level Security (RLS) & Public Access Policies
+ALTER TABLE b2b_franchises ENABLE ROW LEVEL SECURITY;
+ALTER TABLE b2b_orders ENABLE ROW LEVEL SECURITY;
+ALTER TABLE b2c_franchises ENABLE ROW LEVEL SECURITY;
+ALTER TABLE b2c_orders ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "Allow public read access to franchises" ON franchises FOR SELECT USING (true);
-CREATE POLICY "Allow public read access to orders" ON orders FOR SELECT USING (true);
-CREATE POLICY "Allow public write access to orders" ON orders FOR INSERT WITH CHECK (true);
-CREATE POLICY "Allow public update access to orders" ON orders FOR UPDATE USING (true);
+CREATE POLICY "Allow public read access to b2b_franchises" ON b2b_franchises FOR SELECT USING (true);
+CREATE POLICY "Allow public write access to b2b_franchises" ON b2b_franchises FOR ALL USING (true);
+CREATE POLICY "Allow public read access to b2b_orders" ON b2b_orders FOR SELECT USING (true);
+CREATE POLICY "Allow public write access to b2b_orders" ON b2b_orders FOR ALL USING (true);
+
+CREATE POLICY "Allow public read access to b2c_franchises" ON b2c_franchises FOR SELECT USING (true);
+CREATE POLICY "Allow public write access to b2c_franchises" ON b2c_franchises FOR ALL USING (true);
+CREATE POLICY "Allow public read access to b2c_orders" ON b2c_orders FOR SELECT USING (true);
+CREATE POLICY "Allow public write access to b2c_orders" ON b2c_orders FOR ALL USING (true);
