@@ -1,0 +1,10 @@
+{
+  "name": "heisenberg-franchise-portal",
+  "version": "1.0.0",
+  "description": "Breaking Bad & Better Call Saul Enterprise Franchise Network Portal",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  }
+}
