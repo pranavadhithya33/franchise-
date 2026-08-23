@@ -1,44 +1,58 @@
 /* ==========================================================================
-   GUS ENTERPRISE PORTAL ENGINE (B2B & B2C DUAL SYSTEM)
+   GUS ENTERPRISE DUAL FRANCHISE NETWORK ENGINE (B2B & B2C FRANCHISE OWNERS)
    ========================================================================== */
 
-const INITIAL_FRANCHISES = [
-  { id: 'FRAN-SIVAGANGAI', name: 'Vinoth (Master Partner)', location: 'Sivagangai', pin: '9842', type: 'Master' },
-  { id: 'FRAN-CHENNAI', name: 'Rajesh Kumar', location: 'Chennai Central', pin: '1234', type: 'Micro' },
-  { id: 'FRAN-MADURAI', name: 'Karthik Raja', location: 'Madurai West', pin: '2345', type: 'Micro' },
-  { id: 'FRAN-COIMBATORE', name: 'Anitha Ramesh', location: 'Coimbatore RS Puram', pin: '3456', type: 'Micro' },
-  { id: 'FRAN-SALEM', name: 'Selvam Subramanian', location: 'Salem Junction', pin: '4567', type: 'Micro' },
-  { id: 'FRAN-TRICHY', name: 'Manikandan P', location: 'Trichy Cantt', pin: '5678', type: 'Micro' }
+// Initial B2B Wholesale Franchise Partners
+const INITIAL_B2B_FRANCHISES = [
+  { id: 'FRAN-SIVAGANGAI', name: 'Vinoth (B2B Master Partner)', location: 'Sivagangai Wholesale Hub', pin: '9842', type: 'Master' },
+  { id: 'FRAN-CHENNAI', name: 'Rajesh Kumar', location: 'Chennai Central Wholesale', pin: '1234', type: 'Micro' },
+  { id: 'FRAN-MADURAI', name: 'Karthik Raja', location: 'Madurai West Hub', pin: '2345', type: 'Micro' },
+  { id: 'FRAN-COIMBATORE', name: 'Anitha Ramesh', location: 'Coimbatore RS Puram Hub', pin: '3456', type: 'Micro' },
+  { id: 'FRAN-SALEM', name: 'Selvam Subramanian', location: 'Salem Junction Hub', pin: '4567', type: 'Micro' },
+  { id: 'FRAN-TRICHY', name: 'Manikandan P', location: 'Trichy Cantt Hub', pin: '5678', type: 'Micro' }
 ];
 
-const INITIAL_ORDERS = [
-  { id: 'ORD-1001', franchiseId: 'FRAN-SIVAGANGAI', customer: 'Saul Goodman', item: 'iPhone 15 Pro Max 256GB', amount: 125000, status: 'Finished' },
-  { id: 'ORD-1002', franchiseId: 'FRAN-SIVAGANGAI', customer: 'Gustavo Fring', item: 'Samsung Galaxy S24 Ultra', amount: 110000, status: 'Finished' },
-  { id: 'ORD-1003', franchiseId: 'FRAN-CHENNAI', customer: 'Walter White', item: 'MacBook Pro 14 M3', amount: 165000, status: 'Finished' },
-  { id: 'ORD-1004', franchiseId: 'FRAN-MADURAI', customer: 'Jesse Pinkman', item: 'iPad Pro 12.9 M2', amount: 95000, status: 'Finished' },
-  { id: 'ORD-1005', franchiseId: 'FRAN-COIMBATORE', customer: 'Mike Ehrmantraut', item: 'OnePlus 12 512GB', amount: 65000, status: 'Processing' },
-  { id: 'ORD-1006', franchiseId: 'FRAN-SALEM', customer: 'Hank Schrader', item: 'Sony WH-1000XM5', amount: 28000, status: 'Pending' }
+// Initial B2B Wholesale Orders
+const INITIAL_B2B_ORDERS = [
+  { id: 'ORD-1001', franchiseId: 'FRAN-SIVAGANGAI', customer: 'Saul Goodman', item: 'iPhone 15 Pro Max 256GB (5x Bulk)', amount: 625000, status: 'Finished' },
+  { id: 'ORD-1002', franchiseId: 'FRAN-SIVAGANGAI', customer: 'Gustavo Fring', item: 'Samsung Galaxy S24 Ultra (3x Bulk)', amount: 330000, status: 'Finished' },
+  { id: 'ORD-1003', franchiseId: 'FRAN-CHENNAI', customer: 'Walter White', item: 'MacBook Pro 14 M3 (2x Bulk)', amount: 330000, status: 'Finished' },
+  { id: 'ORD-1004', franchiseId: 'FRAN-MADURAI', customer: 'Jesse Pinkman', item: 'iPad Pro 12.9 M2 (4x Bulk)', amount: 380000, status: 'Finished' },
+  { id: 'ORD-1005', franchiseId: 'FRAN-COIMBATORE', customer: 'Mike Ehrmantraut', item: 'OnePlus 12 512GB (3x Bulk)', amount: 195000, status: 'Processing' },
+  { id: 'ORD-1006', franchiseId: 'FRAN-SALEM', customer: 'Hank Schrader', item: 'Sony WH-1000XM5 (5x Bulk)', amount: 140000, status: 'Pending' }
 ];
 
+// Initial B2C Retail Store Franchise Partners
+const INITIAL_B2C_FRANCHISES = [
+  { id: 'RETAIL-TRICHY', name: 'Senthil Nathan (B2C Retail Owner)', location: 'Trichy Main Road Outlet', pin: '8811', type: 'Retail Store' },
+  { id: 'RETAIL-MADURAI', name: 'Meenakshi Sundaram', location: 'Madurai Temple View Outlet', pin: '7722', type: 'Retail Store' },
+  { id: 'RETAIL-CHENNAI', name: 'Praveen V', location: 'Chennai T.Nagar Outlet', pin: '6633', type: 'Retail Store' },
+  { id: 'RETAIL-COIMBATORE', name: 'Deepa Lakshmi', location: 'Coimbatore Brookefields Outlet', pin: '5544', type: 'Retail Store' }
+];
+
+// Initial B2C Retail Store Orders
 const INITIAL_B2C_ORDERS = [
-  { id: 'B2C-9001', customerName: 'Ramesh Kumar', phone: '9876543210', item: 'iPhone 15 128GB (Blue)', amount: 64900, status: 'Delivered', tracking: 'TRK-GUS-8801', date: '2026-08-20' },
-  { id: 'B2C-9002', customerName: 'Priya Sharma', phone: '9876543210', item: 'AirPods Pro 2nd Gen', amount: 22900, status: 'Dispatched', tracking: 'TRK-GUS-8802', date: '2026-08-22' },
-  { id: 'B2C-9003', customerName: 'Arun Prakash', phone: '9123456789', item: 'Samsung Galaxy Watch 6', amount: 28900, status: 'Processing', tracking: 'TRK-GUS-8803', date: '2026-08-23' }
+  { id: 'B2C-9001', franchiseId: 'RETAIL-TRICHY', customer: 'Ramesh Kumar (Retail)', item: 'iPhone 15 128GB (Blue)', amount: 64900, status: 'Finished' },
+  { id: 'B2C-9002', franchiseId: 'RETAIL-TRICHY', customer: 'Priya Sharma (Retail)', item: 'AirPods Pro 2nd Gen', amount: 22900, status: 'Finished' },
+  { id: 'B2C-9003', franchiseId: 'RETAIL-MADURAI', customer: 'Arun Prakash (Retail)', item: 'Samsung Galaxy Watch 6', amount: 28900, status: 'Processing' },
+  { id: 'B2C-9004', franchiseId: 'RETAIL-CHENNAI', customer: 'Kavitha M (Retail)', item: 'iPad Air 5th Gen', amount: 59900, status: 'Pending' }
 ];
 
 let appState = {
-  franchises: JSON.parse(localStorage.getItem('bb_franchises')) || INITIAL_FRANCHISES,
-  orders: JSON.parse(localStorage.getItem('bb_orders')) || INITIAL_ORDERS,
+  b2bFranchises: JSON.parse(localStorage.getItem('gus_b2b_franchises')) || INITIAL_B2B_FRANCHISES,
+  b2bOrders: JSON.parse(localStorage.getItem('gus_b2b_orders')) || INITIAL_B2B_ORDERS,
+  b2cFranchises: JSON.parse(localStorage.getItem('gus_b2c_franchises')) || INITIAL_B2C_FRANCHISES,
   b2cOrders: JSON.parse(localStorage.getItem('gus_b2c_orders')) || INITIAL_B2C_ORDERS,
-  currentUser: JSON.parse(localStorage.getItem('bb_current_user')) || null,
+  currentUser: JSON.parse(localStorage.getItem('gus_current_user')) || null,
   activeAdminModule: 'b2b' // 'b2b' or 'b2c'
 };
 
 function saveState() {
-  localStorage.setItem('bb_franchises', JSON.stringify(appState.franchises));
-  localStorage.setItem('bb_orders', JSON.stringify(appState.orders));
+  localStorage.setItem('gus_b2b_franchises', JSON.stringify(appState.b2bFranchises));
+  localStorage.setItem('gus_b2b_orders', JSON.stringify(appState.b2bOrders));
+  localStorage.setItem('gus_b2c_franchises', JSON.stringify(appState.b2cFranchises));
   localStorage.setItem('gus_b2c_orders', JSON.stringify(appState.b2cOrders));
-  localStorage.setItem('bb_current_user', JSON.stringify(appState.currentUser));
+  localStorage.setItem('gus_current_user', JSON.stringify(appState.currentUser));
 }
 
 window.showToast = function(message) {
@@ -65,8 +79,8 @@ window.addEventListener('popstate', () => {
 document.addEventListener('DOMContentLoaded', async () => {
   initForms();
   if (window.dbHelper) {
-    appState.franchises = await window.dbHelper.fetchFranchises(appState.franchises);
-    appState.orders = await window.dbHelper.fetchOrders(appState.orders);
+    appState.b2bFranchises = await window.dbHelper.fetchFranchises(appState.b2bFranchises);
+    appState.b2bOrders = await window.dbHelper.fetchOrders(appState.b2bOrders);
   }
   renderCurrentRoute();
 });
@@ -88,16 +102,16 @@ function renderCurrentRoute() {
     }
   } else if (path === '/admin-login') {
     showSection('route-admin-login');
-  } else if (path === '/dashboard' || path === '/b2b-dashboard') {
-    if (appState.currentUser && appState.currentUser.role === 'Franchise') {
-      showSection('route-dashboard');
+  } else if (path === '/b2b-dashboard' || path === '/dashboard') {
+    if (appState.currentUser && appState.currentUser.role === 'B2B_Franchise') {
+      showSection('route-b2b-dashboard');
     } else {
       window.history.replaceState({}, '', '/login');
       showSection('route-login');
     }
-  } else if (path === '/b2c-portal') {
-    if (appState.currentUser && appState.currentUser.role === 'B2C') {
-      showSection('route-b2c-portal');
+  } else if (path === '/b2c-dashboard') {
+    if (appState.currentUser && appState.currentUser.role === 'B2C_Franchise') {
+      showSection('route-b2c-dashboard');
     } else {
       window.history.replaceState({}, '', '/login');
       showSection('route-login');
@@ -107,7 +121,7 @@ function renderCurrentRoute() {
   } else if (path === '/directory') {
     showSection('route-directory');
   } else {
-    // Default Home Page -> B2B & B2C Dual Login
+    // Default Home Page -> B2B & B2C Dual Franchise Owner Login
     showSection('route-login');
   }
 
@@ -130,10 +144,10 @@ function updateNavbarState(currentPath) {
     logoutBtn.style.display = 'none';
     userPill.textContent = '🔒 Logged Out';
     userPill.style.color = 'var(--text-muted)';
-  } else if (appState.currentUser.role === 'Franchise') {
+  } else if (appState.currentUser.role === 'B2B_Franchise') {
     navMenu.style.display = 'flex';
     logoutBtn.style.display = 'block';
-    userPill.textContent = `🏬 B2B: ${appState.currentUser.name} (${appState.currentUser.id})`;
+    userPill.textContent = `🏢 B2B Wholesale: ${appState.currentUser.name} (${appState.currentUser.id})`;
     userPill.style.color = 'var(--emerald-green)';
 
     navMenu.innerHTML = `
@@ -141,15 +155,16 @@ function updateNavbarState(currentPath) {
       <li><a href="/leaderboard" class="nav-link ${currentPath === '/leaderboard' ? 'active' : ''}" onclick="navigateRoute('/leaderboard', event)">🏆 Empire Leaderboard</a></li>
       <li><a href="/directory" class="nav-link ${currentPath === '/directory' ? 'active' : ''}" onclick="navigateRoute('/directory', event)">🌐 Network Directory</a></li>
     `;
-  } else if (appState.currentUser.role === 'B2C') {
+  } else if (appState.currentUser.role === 'B2C_Franchise') {
     navMenu.style.display = 'flex';
     logoutBtn.style.display = 'block';
-    userPill.textContent = `🛍️ B2C Customer: ${appState.currentUser.phone}`;
+    userPill.textContent = `🏪 B2C Retail Store: ${appState.currentUser.name} (${appState.currentUser.id})`;
     userPill.style.color = 'var(--gold-accent)';
 
     navMenu.innerHTML = `
-      <li><a href="/b2c-portal" class="nav-link ${currentPath === '/b2c-portal' ? 'active' : ''}" onclick="navigateRoute('/b2c-portal', event)">🛍️ My Retail Orders</a></li>
-      <li><a href="/directory" class="nav-link ${currentPath === '/directory' ? 'active' : ''}" onclick="navigateRoute('/directory', event)">🌐 Store Directory</a></li>
+      <li><a href="/b2c-dashboard" class="nav-link ${currentPath === '/b2c-dashboard' ? 'active' : ''}" onclick="navigateRoute('/b2c-dashboard', event)">🏪 B2C Retail Dashboard</a></li>
+      <li><a href="/leaderboard" class="nav-link ${currentPath === '/leaderboard' ? 'active' : ''}" onclick="navigateRoute('/leaderboard', event)">🏆 Empire Leaderboard</a></li>
+      <li><a href="/directory" class="nav-link ${currentPath === '/directory' ? 'active' : ''}" onclick="navigateRoute('/directory', event)">🌐 Network Directory</a></li>
     `;
   } else if (appState.currentUser.role === 'Admin') {
     navMenu.style.display = 'flex';
@@ -166,7 +181,7 @@ function updateNavbarState(currentPath) {
 }
 
 /* ==========================================================================
-   HOMEPAGE DUAL TAB SWITCHER (B2B vs B2C)
+   HOMEPAGE DUAL TAB SWITCHER (B2B Franchise vs B2C Franchise)
    ========================================================================== */
 
 window.switchHomeLoginTab = function(mode) {
@@ -189,7 +204,7 @@ window.switchHomeLoginTab = function(mode) {
 };
 
 /* ==========================================================================
-   ADMIN DUAL MODULE SWITCHER (B2B Module vs B2C Module)
+   ADMIN DUAL MODULE SWITCHER (B2B Operations vs B2C Operations)
    ========================================================================== */
 
 window.switchAdminModule = function(module) {
@@ -217,19 +232,19 @@ window.switchAdminModule = function(module) {
    ========================================================================== */
 
 function initForms() {
-  // B2B Franchise Owner Login Form
-  const formFranchise = document.getElementById('form-login-franchise');
-  if (formFranchise) {
-    formFranchise.addEventListener('submit', (e) => {
+  // B2B Wholesale Franchise Owner Login Form
+  const formB2B = document.getElementById('form-login-b2b');
+  if (formB2B) {
+    formB2B.addEventListener('submit', (e) => {
       e.preventDefault();
-      const id = document.getElementById('login-franchise-id').value.trim().toUpperCase();
-      const pin = document.getElementById('login-pin').value.trim();
+      const id = document.getElementById('login-b2b-id').value.trim().toUpperCase();
+      const pin = document.getElementById('login-b2b-pin').value.trim();
 
-      const match = appState.franchises.find(f => f.id === id && f.pin === pin);
+      const match = appState.b2bFranchises.find(f => f.id === id && f.pin === pin);
       if (match) {
-        appState.currentUser = { ...match, role: 'Franchise' };
+        appState.currentUser = { ...match, role: 'B2B_Franchise' };
         saveState();
-        showToast(`B2B Authenticated: Welcome back, ${match.name}!`);
+        showToast(`B2B Authenticated: Welcome, ${match.name}!`);
         navigateRoute('/b2b-dashboard');
       } else {
         alert('❌ Invalid B2B Franchise ID or PIN!');
@@ -237,18 +252,23 @@ function initForms() {
     });
   }
 
-  // B2C Customer Retail Login Form
+  // B2C Retail Store Franchise Owner Login Form
   const formB2C = document.getElementById('form-login-b2c');
   if (formB2C) {
     formB2C.addEventListener('submit', (e) => {
       e.preventDefault();
-      const phone = document.getElementById('login-b2c-phone').value.trim();
-      const orderId = document.getElementById('login-b2c-order').value.trim().toUpperCase();
+      const id = document.getElementById('login-b2c-id').value.trim().toUpperCase();
+      const pin = document.getElementById('login-b2c-pin').value.trim();
 
-      appState.currentUser = { role: 'B2C', phone, orderId };
-      saveState();
-      showToast(`B2C Consumer Portal Unlocked for ${phone}`);
-      navigateRoute('/b2c-portal');
+      const match = appState.b2cFranchises.find(f => f.id === id && f.pin === pin);
+      if (match) {
+        appState.currentUser = { ...match, role: 'B2C_Franchise' };
+        saveState();
+        showToast(`B2C Retail Authenticated: Welcome, ${match.name}!`);
+        navigateRoute('/b2c-dashboard');
+      } else {
+        alert('❌ Invalid B2C Retail Franchise ID or PIN!');
+      }
     });
   }
 
@@ -262,7 +282,7 @@ function initForms() {
       if (pin === '7777') {
         appState.currentUser = { id: 'ADMIN-01', name: 'Gustavo Fring (Executive Admin)', role: 'Admin' };
         saveState();
-        showToast('Authenticated as Master Executive Admin');
+        showToast('Authenticated as Executive Admin');
         navigateRoute('/admin');
       } else {
         alert('❌ Invalid Admin PIN! (Demo PIN: 7777)');
@@ -270,46 +290,68 @@ function initForms() {
     });
   }
 
-  // Form: Add New Franchise (Admin B2B)
-  const formAddFranchise = document.getElementById('form-admin-add-franchise');
-  if (formAddFranchise) {
-    formAddFranchise.addEventListener('submit', async (e) => {
+  // Form: Add New B2B Franchise (Admin B2B)
+  const formAddB2BFranchise = document.getElementById('form-admin-add-b2b-franchise');
+  if (formAddB2BFranchise) {
+    formAddB2BFranchise.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const id = document.getElementById('input-franchise-id').value.trim().toUpperCase();
-      const name = document.getElementById('input-franchise-name').value.trim();
-      const location = document.getElementById('input-franchise-location').value.trim();
-      const pin = document.getElementById('input-franchise-pin').value.trim();
-      const type = document.getElementById('select-franchise-type').value;
+      const id = document.getElementById('input-b2b-franchise-id').value.trim().toUpperCase();
+      const name = document.getElementById('input-b2b-franchise-name').value.trim();
+      const location = document.getElementById('input-b2b-franchise-location').value.trim();
+      const pin = document.getElementById('input-b2b-franchise-pin').value.trim();
+      const type = document.getElementById('select-b2b-franchise-type').value;
 
-      if (appState.franchises.some(f => f.id === id)) {
-        alert(`❌ Franchise ID ${id} already exists!`);
+      if (appState.b2bFranchises.some(f => f.id === id)) {
+        alert(`❌ B2B Franchise ID ${id} already exists!`);
         return;
       }
 
       const newFranchise = { id, name, location, pin, type };
-      appState.franchises.push(newFranchise);
+      appState.b2bFranchises.push(newFranchise);
       saveState();
 
-      if (window.dbHelper) {
-        await window.dbHelper.createFranchise(newFranchise);
-      }
-
       showToast(`B2B Franchise ${id} created!`);
-      formAddFranchise.reset();
+      formAddB2BFranchise.reset();
       renderAllViews();
     });
   }
 
-  // Form: Add Wholesale Order (Admin B2B)
-  const formAddOrder = document.getElementById('form-admin-add-order');
-  if (formAddOrder) {
-    formAddOrder.addEventListener('submit', async (e) => {
+  // Form: Add New B2C Retail Franchise (Admin B2C)
+  const formAddB2CFranchise = document.getElementById('form-admin-add-b2c-franchise');
+  if (formAddB2CFranchise) {
+    formAddB2CFranchise.addEventListener('submit', (e) => {
       e.preventDefault();
-      const franchiseId = document.getElementById('select-admin-franchise').value;
-      const customer = document.getElementById('input-customer').value.trim();
-      const item = document.getElementById('input-item').value.trim();
-      const amount = Number(document.getElementById('input-amount').value);
-      const status = document.getElementById('select-status').value;
+      const id = document.getElementById('input-b2c-franchise-id').value.trim().toUpperCase();
+      const name = document.getElementById('input-b2c-franchise-name').value.trim();
+      const location = document.getElementById('input-b2c-franchise-location').value.trim();
+      const pin = document.getElementById('input-b2c-franchise-pin').value.trim();
+      const type = document.getElementById('select-b2c-franchise-type').value;
+
+      if (appState.b2cFranchises.some(f => f.id === id)) {
+        alert(`❌ B2C Retail Franchise ID ${id} already exists!`);
+        return;
+      }
+
+      const newFranchise = { id, name, location, pin, type };
+      appState.b2cFranchises.push(newFranchise);
+      saveState();
+
+      showToast(`B2C Retail Franchise ${id} created!`);
+      formAddB2CFranchise.reset();
+      renderAllViews();
+    });
+  }
+
+  // Form: Assign B2B Wholesale Order (Admin B2B)
+  const formAddB2BOrder = document.getElementById('form-admin-add-b2b-order');
+  if (formAddB2BOrder) {
+    formAddB2BOrder.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const franchiseId = document.getElementById('select-admin-b2b-franchise').value;
+      const customer = document.getElementById('input-b2b-customer').value.trim();
+      const item = document.getElementById('input-b2b-item').value.trim();
+      const amount = Number(document.getElementById('input-b2b-amount').value);
+      const status = document.getElementById('select-b2b-status').value;
 
       const newOrder = {
         id: `ORD-${Math.floor(1000 + Math.random() * 9000)}`,
@@ -320,44 +362,39 @@ function initForms() {
         status
       };
 
-      appState.orders.push(newOrder);
+      appState.b2bOrders.push(newOrder);
       saveState();
 
-      if (window.dbHelper) {
-        await window.dbHelper.createOrder(newOrder);
-      }
-
-      showToast(`Wholesale Order ${newOrder.id} assigned to ${franchiseId}`);
-      formAddOrder.reset();
+      showToast(`B2B Order ${newOrder.id} assigned to ${franchiseId}`);
+      formAddB2BOrder.reset();
       renderAllViews();
     });
   }
 
-  // Form: Add Direct B2C Retail Order (Admin B2C)
+  // Form: Assign B2C Retail Store Order (Admin B2C)
   const formAddB2COrder = document.getElementById('form-admin-add-b2c-order');
   if (formAddB2COrder) {
     formAddB2COrder.addEventListener('submit', (e) => {
       e.preventDefault();
-      const customerName = document.getElementById('input-b2c-name').value.trim();
-      const phone = document.getElementById('input-b2c-phone').value.trim();
+      const franchiseId = document.getElementById('select-admin-b2c-franchise').value;
+      const customer = document.getElementById('input-b2c-customer').value.trim();
       const item = document.getElementById('input-b2c-item').value.trim();
       const amount = Number(document.getElementById('input-b2c-amount').value);
       const status = document.getElementById('select-b2c-status').value;
 
-      const newB2COrder = {
+      const newOrder = {
         id: `B2C-${Math.floor(9000 + Math.random() * 1000)}`,
-        customerName,
-        phone,
+        franchiseId,
+        customer,
         item,
         amount,
-        status,
-        tracking: `TRK-GUS-${Math.floor(1000 + Math.random() * 9000)}`,
-        date: new Date().toISOString().split('T')[0]
+        status
       };
 
-      appState.b2cOrders.push(newB2COrder);
+      appState.b2cOrders.push(newOrder);
       saveState();
-      showToast(`B2C Retail Order ${newB2COrder.id} created for ${customerName}`);
+
+      showToast(`B2C Order ${newOrder.id} assigned to ${franchiseId}`);
       formAddB2COrder.reset();
       renderAllViews();
     });
@@ -376,28 +413,28 @@ window.logoutUser = function() {
    ========================================================================== */
 
 function renderAllViews() {
-  renderDashboard();
-  renderB2CPortal();
+  renderB2BDashboard();
+  renderB2CDashboard();
   renderLeaderboard();
   renderAdminHub();
   renderDirectory();
 }
 
-function renderDashboard() {
-  if (!appState.currentUser || appState.currentUser.role !== 'Franchise') return;
+function renderB2BDashboard() {
+  if (!appState.currentUser || appState.currentUser.role !== 'B2B_Franchise') return;
 
-  const myOrders = appState.orders.filter(o => o.franchiseId === appState.currentUser.id);
+  const myOrders = appState.b2bOrders.filter(o => o.franchiseId === appState.currentUser.id);
   const finishedOrders = myOrders.filter(o => o.status === 'Finished');
   const totalRevenue = finishedOrders.reduce((sum, o) => sum + Number(o.amount), 0);
 
-  document.getElementById('dash-revenue').textContent = `₹${totalRevenue.toLocaleString('en-IN')}`;
-  document.getElementById('dash-finished-count').textContent = finishedOrders.length;
+  document.getElementById('b2b-dash-revenue').textContent = `₹${totalRevenue.toLocaleString('en-IN')}`;
+  document.getElementById('b2b-dash-finished-count').textContent = finishedOrders.length;
 
-  const leaderboard = calculateLeaderboard();
+  const leaderboard = calculateLeaderboard(appState.b2bFranchises, appState.b2bOrders);
   const rankIndex = leaderboard.findIndex(item => item.id === appState.currentUser.id);
-  document.getElementById('dash-rank').textContent = rankIndex !== -1 ? `#${rankIndex + 1}` : '#--';
+  document.getElementById('b2b-dash-rank').textContent = rankIndex !== -1 ? `#${rankIndex + 1}` : '#--';
 
-  const tbody = document.getElementById('tbl-my-orders');
+  const tbody = document.getElementById('tbl-b2b-my-orders');
   if (!tbody) return;
   tbody.innerHTML = '';
 
@@ -422,62 +459,48 @@ function renderDashboard() {
   });
 }
 
-function renderB2CPortal() {
-  if (!appState.currentUser || appState.currentUser.role !== 'B2C') return;
+function renderB2CDashboard() {
+  if (!appState.currentUser || appState.currentUser.role !== 'B2C_Franchise') return;
 
-  const container = document.getElementById('b2c-orders-container');
-  if (!container) return;
-  container.innerHTML = '';
+  const myOrders = appState.b2cOrders.filter(o => o.franchiseId === appState.currentUser.id);
+  const finishedOrders = myOrders.filter(o => o.status === 'Finished');
+  const totalRevenue = finishedOrders.reduce((sum, o) => sum + Number(o.amount), 0);
 
-  const userPhone = appState.currentUser.phone;
-  const userOrder = appState.currentUser.orderId;
+  document.getElementById('b2c-dash-revenue').textContent = `₹${totalRevenue.toLocaleString('en-IN')}`;
+  document.getElementById('b2c-dash-finished-count').textContent = finishedOrders.length;
 
-  const filtered = appState.b2cOrders.filter(o => 
-    (userPhone && o.phone === userPhone) || 
-    (userOrder && o.id === userOrder)
-  );
+  const leaderboard = calculateLeaderboard(appState.b2cFranchises, appState.b2cOrders);
+  const rankIndex = leaderboard.findIndex(item => item.id === appState.currentUser.id);
+  document.getElementById('b2c-dash-rank').textContent = rankIndex !== -1 ? `#${rankIndex + 1}` : '#--';
 
-  if (filtered.length === 0) {
-    container.innerHTML = `
-      <div style="text-align: center; padding: 40px; color: var(--text-muted);">
-        <h3>No retail orders found for phone number ${userPhone || userOrder}</h3>
-        <p>Showing sample B2C store order for demonstration:</p>
-      </div>
-    `;
-    // Show sample B2C order if none match
-    filtered.push(appState.b2cOrders[0]);
+  const tbody = document.getElementById('tbl-b2c-my-orders');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+
+  if (myOrders.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="5" style="padding: 20px; text-align: center; color: var(--text-muted);">No assigned B2C retail store orders found.</td></tr>`;
+    return;
   }
 
-  filtered.forEach(ord => {
-    const statusClass = ord.status === 'Delivered' ? 'status-finished' : (ord.status === 'Dispatched' ? 'status-processing' : 'status-pending');
-    const div = document.createElement('div');
-    div.className = 'glass-card';
-    div.style.marginBottom = '16px';
-    div.style.borderColor = 'var(--gold-accent)';
+  myOrders.forEach(ord => {
+    const tr = document.createElement('tr');
+    tr.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+    const statusClass = `status-${ord.status.toLowerCase()}`;
 
-    div.innerHTML = `
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
-        <div>
-          <span style="font-family: var(--font-mono); color: var(--gold-accent); font-weight: 800; font-size: 1.2rem;">${ord.id}</span>
-          <span style="font-size: 0.8rem; color: var(--text-muted); margin-left: 10px;">📅 Date: ${ord.date}</span>
-        </div>
-        <span class="status-pill ${statusClass}">${ord.status}</span>
-      </div>
-
-      <div style="font-size: 1.2rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">📱 Product: ${ord.item}</div>
-      <div style="font-family: var(--font-mono); font-size: 1.4rem; color: var(--crystal-cyan); font-weight: 800; margin-bottom: 12px;">Total Paid: ₹${Number(ord.amount).toLocaleString('en-IN')}</div>
-      <div style="background: rgba(8,10,14,0.8); padding: 10px 14px; border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted);">
-        🚚 GUS Logistics Tracking No: <strong style="color: var(--emerald-green);">${ord.tracking}</strong>
-      </div>
+    tr.innerHTML = `
+      <td style="padding: 12px; font-family: var(--font-mono); color: var(--gold-accent); font-weight: 700;">${ord.id}</td>
+      <td style="padding: 12px; font-weight: 600;">${ord.customer}</td>
+      <td style="padding: 12px;">${ord.item}</td>
+      <td style="padding: 12px; font-family: var(--font-mono); color: var(--crystal-cyan); font-weight: 700;">₹${Number(ord.amount).toLocaleString('en-IN')}</td>
+      <td style="padding: 12px;"><span class="status-pill ${statusClass}">${ord.status}</span></td>
     `;
-
-    container.appendChild(div);
+    tbody.appendChild(tr);
   });
 }
 
-function calculateLeaderboard() {
-  return appState.franchises.map(franchise => {
-    const finishedOrders = appState.orders.filter(o => o.franchiseId === franchise.id && o.status === 'Finished');
+function calculateLeaderboard(franchisesList, ordersList) {
+  return franchisesList.map(franchise => {
+    const finishedOrders = ordersList.filter(o => o.franchiseId === franchise.id && o.status === 'Finished');
     const revenue = finishedOrders.reduce((sum, o) => sum + Number(o.amount), 0);
     return {
       ...franchise,
@@ -488,83 +511,113 @@ function calculateLeaderboard() {
 }
 
 function renderLeaderboard() {
-  const container = document.getElementById('leaderboard-container');
-  if (!container) return;
-  const sorted = calculateLeaderboard();
+  const containerB2B = document.getElementById('leaderboard-b2b-container');
+  const containerB2C = document.getElementById('leaderboard-b2c-container');
 
-  container.innerHTML = '';
+  if (containerB2B) {
+    const sortedB2B = calculateLeaderboard(appState.b2bFranchises, appState.b2bOrders);
+    containerB2B.innerHTML = '';
+    sortedB2B.forEach((item, index) => {
+      const rankNum = index + 1;
+      const div = document.createElement('div');
+      div.className = `leaderboard-row ${rankNum === 1 ? 'rank-1' : ''}`;
+      div.innerHTML = `
+        <div class="rank-badge">${rankNum}</div>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 700; font-size: 1.1rem; color: var(--text-primary);">${item.name} ${rankNum === 1 ? '👑 [Top B2B Master]' : ''}</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted);">📍 ${item.location} • ID: ${item.id}</div>
+        </div>
+        <div style="text-align: right;">
+          <div style="font-family: var(--font-mono); font-weight: 800; font-size: 1.3rem; color: var(--crystal-cyan);">₹${item.revenue.toLocaleString('en-IN')}</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">${item.completedOrderCount} Wholesale Finished</div>
+        </div>
+      `;
+      containerB2B.appendChild(div);
+    });
+  }
 
-  sorted.forEach((item, index) => {
-    const rankNum = index + 1;
-    const rankClass = rankNum === 1 ? 'rank-1' : '';
-
-    const div = document.createElement('div');
-    div.className = `leaderboard-row ${rankClass}`;
-
-    div.innerHTML = `
-      <div class="rank-badge">${rankNum}</div>
-      <div style="flex-grow: 1;">
-        <div style="font-weight: 700; font-size: 1.1rem; color: var(--text-primary);">${item.name} ${rankNum === 1 ? '👑 [Top B2B Partner]' : ''}</div>
-        <div style="font-size: 0.85rem; color: var(--text-muted);">📍 ${item.location} • ID: ${item.id}</div>
-      </div>
-      <div style="text-align: right;">
-        <div style="font-family: var(--font-mono); font-weight: 800; font-size: 1.3rem; color: var(--crystal-cyan);">₹${item.revenue.toLocaleString('en-IN')}</div>
-        <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">${item.completedOrderCount} Wholesale Finished</div>
-      </div>
-    `;
-
-    container.appendChild(div);
-  });
+  if (containerB2C) {
+    const sortedB2C = calculateLeaderboard(appState.b2cFranchises, appState.b2cOrders);
+    containerB2C.innerHTML = '';
+    sortedB2C.forEach((item, index) => {
+      const rankNum = index + 1;
+      const div = document.createElement('div');
+      div.className = `leaderboard-row ${rankNum === 1 ? 'rank-1' : ''}`;
+      div.style.borderColor = 'var(--gold-accent)';
+      div.innerHTML = `
+        <div class="rank-badge" style="border-color: var(--gold-accent); color: var(--gold-accent);">${rankNum}</div>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 700; font-size: 1.1rem; color: var(--text-primary);">${item.name} ${rankNum === 1 ? '👑 [Top B2C Store]' : ''}</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted);">📍 ${item.location} • ID: ${item.id}</div>
+        </div>
+        <div style="text-align: right;">
+          <div style="font-family: var(--font-mono); font-weight: 800; font-size: 1.3rem; color: var(--gold-accent);">₹${item.revenue.toLocaleString('en-IN')}</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">${item.completedOrderCount} Retail Sales Finished</div>
+        </div>
+      `;
+      containerB2C.appendChild(div);
+    });
+  }
 }
 
 function renderAdminHub() {
   if (!appState.currentUser || appState.currentUser.role !== 'Admin') return;
 
-  const selectFranchise = document.getElementById('select-admin-franchise');
-  if (selectFranchise) {
-    selectFranchise.innerHTML = '';
-    appState.franchises.forEach(f => {
+  // Populate B2B Select Dropdown
+  const selectB2B = document.getElementById('select-admin-b2b-franchise');
+  if (selectB2B) {
+    selectB2B.innerHTML = '';
+    appState.b2bFranchises.forEach(f => {
       const opt = document.createElement('option');
       opt.value = f.id;
       opt.textContent = `${f.name} (${f.location})`;
-      selectFranchise.appendChild(opt);
+      selectB2B.appendChild(opt);
     });
   }
 
-  renderAdminFranchiseRoster();
-  filterAdminOrders();
-  renderAdminB2COrders();
+  // Populate B2C Select Dropdown
+  const selectB2C = document.getElementById('select-admin-b2c-franchise');
+  if (selectB2C) {
+    selectB2C.innerHTML = '';
+    appState.b2cFranchises.forEach(f => {
+      const opt = document.createElement('option');
+      opt.value = f.id;
+      opt.textContent = `${f.name} (${f.location})`;
+      selectB2C.appendChild(opt);
+    });
+  }
+
+  renderAdminB2BFranchiseRoster();
+  filterAdminB2BOrders();
+  renderAdminB2CFranchiseRoster();
+  filterAdminB2COrders();
 }
 
-function renderAdminFranchiseRoster() {
-  const tbody = document.getElementById('tbl-admin-franchises');
+function renderAdminB2BFranchiseRoster() {
+  const tbody = document.getElementById('tbl-admin-b2b-franchises');
   if (!tbody) return;
-
   tbody.innerHTML = '';
 
-  appState.franchises.forEach(f => {
+  appState.b2bFranchises.forEach(f => {
     const tr = document.createElement('tr');
     tr.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
-
     tr.innerHTML = `
       <td style="padding: 8px; font-family: var(--font-mono); color: var(--emerald-green); font-weight: 700;">${f.id}</td>
       <td style="padding: 8px; font-weight: 600;">${f.name}</td>
       <td style="padding: 8px; font-size: 0.85rem; color: var(--text-muted);">${f.location}</td>
       <td style="padding: 8px; font-family: var(--font-mono); color: var(--crystal-cyan); font-weight: 700;">${f.pin}</td>
     `;
-
     tbody.appendChild(tr);
   });
 }
 
-window.filterAdminOrders = function() {
-  const query = (document.getElementById('search-admin-orders')?.value || '').toLowerCase();
-  const tbodyAdmin = document.getElementById('tbl-admin-orders');
+window.filterAdminB2BOrders = function() {
+  const query = (document.getElementById('search-admin-b2b-orders')?.value || '').toLowerCase();
+  const tbodyAdmin = document.getElementById('tbl-admin-b2b-orders');
   if (!tbodyAdmin) return;
-
   tbodyAdmin.innerHTML = '';
 
-  const filtered = appState.orders.filter(o => 
+  const filtered = appState.b2bOrders.filter(o => 
     o.id.toLowerCase().includes(query) ||
     o.customer.toLowerCase().includes(query) ||
     o.item.toLowerCase().includes(query)
@@ -573,65 +626,80 @@ window.filterAdminOrders = function() {
   filtered.forEach(ord => {
     const tr = document.createElement('tr');
     tr.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
-    const owner = appState.franchises.find(f => f.id === ord.franchiseId);
+    const owner = appState.b2bFranchises.find(f => f.id === ord.franchiseId);
 
     tr.innerHTML = `
       <td style="padding: 10px; font-family: var(--font-mono); color: var(--emerald-green); font-weight: 700;">${ord.id}</td>
       <td style="padding: 10px; font-size: 0.85rem;">${owner ? owner.name : ord.franchiseId}</td>
       <td style="padding: 10px; font-family: var(--font-mono); color: var(--crystal-cyan); font-weight: 700;">₹${Number(ord.amount).toLocaleString('en-IN')}</td>
       <td style="padding: 10px;">
-        <select onchange="updateOrderStatus('${ord.id}', this.value)" style="background: var(--bg-dark); color: var(--text-primary); border: 1.5px solid var(--smoke-border); border-radius: 4px; padding: 6px; font-size: 0.82rem; font-family: var(--font-mono);">
+        <select onchange="updateB2BOrderStatus('${ord.id}', this.value)" style="background: var(--bg-dark); color: var(--text-primary); border: 1.5px solid var(--smoke-border); border-radius: 4px; padding: 6px; font-size: 0.82rem; font-family: var(--font-mono);">
           <option value="Pending" ${ord.status === 'Pending' ? 'selected' : ''}>Pending ⏳</option>
           <option value="Processing" ${ord.status === 'Processing' ? 'selected' : ''}>Processing ⚙️</option>
           <option value="Finished" ${ord.status === 'Finished' ? 'selected' : ''}>Finished ✅</option>
         </select>
       </td>
     `;
-
     tbodyAdmin.appendChild(tr);
   });
 };
 
-function renderAdminB2COrders() {
+function renderAdminB2CFranchiseRoster() {
+  const tbody = document.getElementById('tbl-admin-b2c-franchises');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+
+  appState.b2cFranchises.forEach(f => {
+    const tr = document.createElement('tr');
+    tr.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+    tr.innerHTML = `
+      <td style="padding: 8px; font-family: var(--font-mono); color: var(--gold-accent); font-weight: 700;">${f.id}</td>
+      <td style="padding: 8px; font-weight: 600;">${f.name}</td>
+      <td style="padding: 8px; font-size: 0.85rem; color: var(--text-muted);">${f.location}</td>
+      <td style="padding: 8px; font-family: var(--font-mono); color: var(--gold-accent); font-weight: 700;">${f.pin}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+window.filterAdminB2COrders = function() {
+  const query = (document.getElementById('search-admin-b2c-orders')?.value || '').toLowerCase();
   const tbodyB2C = document.getElementById('tbl-admin-b2c-orders');
   if (!tbodyB2C) return;
   tbodyB2C.innerHTML = '';
 
-  appState.b2cOrders.forEach(ord => {
+  const filtered = appState.b2cOrders.filter(o => 
+    o.id.toLowerCase().includes(query) ||
+    o.customer.toLowerCase().includes(query) ||
+    o.item.toLowerCase().includes(query)
+  );
+
+  filtered.forEach(ord => {
     const tr = document.createElement('tr');
     tr.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+    const owner = appState.b2cFranchises.find(f => f.id === ord.franchiseId);
 
     tr.innerHTML = `
       <td style="padding: 10px; font-family: var(--font-mono); color: var(--gold-accent); font-weight: 700;">${ord.id}</td>
-      <td style="padding: 10px;">
-        <div style="font-weight: 600;">${ord.customerName}</div>
-        <div style="font-size: 0.78rem; color: var(--text-muted); font-family: var(--font-mono);">📞 ${ord.phone}</div>
-      </td>
-      <td style="padding: 10px; font-size: 0.85rem;">${ord.item}</td>
+      <td style="padding: 10px; font-size: 0.85rem;">${owner ? owner.name : ord.franchiseId}</td>
       <td style="padding: 10px; font-family: var(--font-mono); color: var(--crystal-cyan); font-weight: 700;">₹${Number(ord.amount).toLocaleString('en-IN')}</td>
       <td style="padding: 10px;">
         <select onchange="updateB2COrderStatus('${ord.id}', this.value)" style="background: var(--bg-dark); color: var(--text-primary); border: 1.5px solid var(--gold-accent); border-radius: 4px; padding: 6px; font-size: 0.82rem; font-family: var(--font-mono);">
+          <option value="Pending" ${ord.status === 'Pending' ? 'selected' : ''}>Pending ⏳</option>
           <option value="Processing" ${ord.status === 'Processing' ? 'selected' : ''}>Processing ⚙️</option>
-          <option value="Dispatched" ${ord.status === 'Dispatched' ? 'selected' : ''}>Dispatched 🚚</option>
-          <option value="Delivered" ${ord.status === 'Delivered' ? 'selected' : ''}>Delivered ✅</option>
+          <option value="Finished" ${ord.status === 'Finished' ? 'selected' : ''}>Finished ✅</option>
         </select>
       </td>
     `;
-
     tbodyB2C.appendChild(tr);
   });
-}
+};
 
-window.updateOrderStatus = async function(orderId, newStatus) {
-  const ord = appState.orders.find(o => o.id === orderId);
+window.updateB2BOrderStatus = function(orderId, newStatus) {
+  const ord = appState.b2bOrders.find(o => o.id === orderId);
   if (ord) {
     ord.status = newStatus;
     saveState();
-
-    if (window.dbHelper) {
-      await window.dbHelper.updateOrderStatus(orderId, newStatus);
-    }
-
     showToast(`B2B Order ${orderId} updated to ${newStatus}`);
     renderAllViews();
   }
@@ -642,7 +710,7 @@ window.updateB2COrderStatus = function(orderId, newStatus) {
   if (ord) {
     ord.status = newStatus;
     saveState();
-    showToast(`B2C Order ${orderId} status updated to ${newStatus}`);
+    showToast(`B2C Order ${orderId} updated to ${newStatus}`);
     renderAllViews();
   }
 };
@@ -652,22 +720,42 @@ function renderDirectory() {
   if (!container) return;
   container.innerHTML = '';
 
-  appState.franchises.forEach(f => {
+  // Render B2B Master & Wholesale Franchises
+  appState.b2bFranchises.forEach(f => {
     const card = document.createElement('div');
     card.className = 'glass-card';
 
     card.innerHTML = `
       <div class="card-title" style="margin-bottom: 8px;">
-        <span class="bb-periodic-badge"><span class="num">11</span><span class="sym">Na</span><span class="mass">22.989</span></span>
+        <span class="bb-periodic-badge badge-b2b"><span class="num">31</span><span class="sym">Ga</span><span class="mass">69.723</span></span>
         <span>${f.location}</span>
       </div>
       <div style="font-weight: 700; color: var(--emerald-green); font-size: 1.15rem; margin-bottom: 6px;">${f.name}</div>
       <div style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">ID: ${f.id} • PIN: ${f.pin}</div>
-      <div style="margin-top: 16px;">
-        <span class="status-pill status-finished">${f.type} Partner</span>
+      <div style="margin-top: 14px;">
+        <span class="status-pill status-finished">🏢 B2B Wholesale Partner</span>
       </div>
     `;
+    container.appendChild(card);
+  });
 
+  // Render B2C Retail Store Franchises
+  appState.b2cFranchises.forEach(f => {
+    const card = document.createElement('div');
+    card.className = 'glass-card';
+    card.style.borderColor = 'var(--gold-accent)';
+
+    card.innerHTML = `
+      <div class="card-title" style="margin-bottom: 8px; color: var(--gold-accent);">
+        <span class="bb-periodic-badge badge-b2c"><span class="num">79</span><span class="sym">Au</span><span class="mass">196.96</span></span>
+        <span>${f.location}</span>
+      </div>
+      <div style="font-weight: 700; color: var(--gold-accent); font-size: 1.15rem; margin-bottom: 6px;">${f.name}</div>
+      <div style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">ID: ${f.id} • PIN: ${f.pin}</div>
+      <div style="margin-top: 14px;">
+        <span class="status-pill status-pending" style="background: rgba(212,175,55,0.15); color: var(--gold-accent); border-color: var(--gold-accent);">🏪 B2C Retail Store Outlet</span>
+      </div>
+    `;
     container.appendChild(card);
   });
 }
