@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Breaking Bad | Franchise Network Portal</title>
-  <meta name="description" content="Authentic Breaking Bad & Better Call Saul Enterprise Operations Portal">
+  <title>GUS Enterprise | Dual B2B & B2C Operations Portal</title>
+  <meta name="description" content="Authentic GUS Enterprise Portal with Dual B2B Franchise & B2C Retail Operations">
   <link rel="stylesheet" href="/styles.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -18,9 +18,9 @@
     <div class="nav-container">
       <div class="nav-top-row">
         <a href="/login" class="brand-header" onclick="navigateRoute('/login', event)">
-          <img src="/assets/bb_title_logo.jpg" alt="Breaking Bad Logo" class="brand-logo-img">
+          <img src="/assets/bb_title_logo.jpg" alt="GUS Enterprise Logo" class="brand-logo-img">
           <div class="brand-title">
-            <span class="highlight">ONLY GADJETS</span> FRANCHISE PORTAL
+            <span class="highlight">GUS</span> ENTERPRISE PORTAL
           </div>
         </a>
 
@@ -42,26 +42,37 @@
   <!-- ==================== MAIN CONTENT CONTAINER ==================== -->
   <main class="main-content">
 
-    <!-- ==================== ROUTE 1: / or /login (FRANCHISE OWNER LOGIN HOME PAGE) ==================== -->
+    <!-- ==================== ROUTE 1: / or /login (HOMEPAGE DUAL B2B / B2C LOGIN GATEWAY) ==================== -->
     <section class="tab-pane" id="route-login">
       <!-- High-Resolution Full-Width Hero Banner -->
       <div class="bb-hero-banner">
-        <img src="/assets/heisenberg_jesse.jpg" alt="Heisenberg & Jesse Pinkman" class="hero-bg-img">
+        <img src="/assets/heisenberg_jesse.jpg" alt="GUS Enterprise Operations" class="hero-bg-img">
         <div class="hero-overlay">
-          <div class="hero-quote-text">"I am not in danger, Skyler. I am the danger. A guy opens his door and gets shot, and you think that of me? No. I am the one who knocks!"</div>
-          <div class="hero-quote-speaker">— Walter White / Heisenberg | Franchise Partner Authentication</div>
+          <div class="hero-quote-text">"I am not in danger, Skyler. I am the danger... I am the one who knocks!"</div>
+          <div class="hero-quote-speaker">— Gustavo Fring & Heisenberg | GUS Enterprise Dual Portal</div>
         </div>
       </div>
 
-      <div style="max-width: 650px; margin: 0 auto; width: 100%;">
-        <!-- Franchise Owner Access Card -->
-        <div class="glass-card">
+      <div style="max-width: 680px; margin: 0 auto; width: 100%;">
+        
+        <!-- DUAL PORTAL HOMEPAGE TAB SELECTOR -->
+        <div class="portal-switch-tabs">
+          <button type="button" class="portal-tab-btn active-b2b" id="tab-btn-b2b" onclick="switchHomeLoginTab('b2b')">
+            🏢 B2B FRANCHISE OWNER
+          </button>
+          <button type="button" class="portal-tab-btn" id="tab-btn-b2c" onclick="switchHomeLoginTab('b2c')">
+            🛍️ B2C RETAIL CONSUMER
+          </button>
+        </div>
+
+        <!-- B2B LOGIN CARD -->
+        <div class="glass-card" id="card-login-b2b">
           <div class="card-title">
-            <span class="bb-periodic-badge"><span class="num">35</span><span class="sym">Br</span><span class="mass">79.904</span></span>
-            <span>Franchise Owner Access Portal</span>
+            <span class="bb-periodic-badge badge-b2b"><span class="num">31</span><span class="sym">Ga</span><span class="mass">69.723</span></span>
+            <span>B2B Franchise Partner Access Portal</span>
           </div>
           <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 18px;">
-            Welcome to the Only Gadjets Network. Enter your assigned Franchise ID (e.g., <code style="color: var(--crystal-cyan); font-weight: 700;">FRAN-SIVAGANGAI</code>) and 4-digit PIN.
+            Welcome Franchise Owner. Enter your assigned Franchise ID (e.g., <code style="color: var(--crystal-cyan); font-weight: 700;">FRAN-SIVAGANGAI</code>) and 4-digit PIN.
           </p>
 
           <form id="form-login-franchise">
@@ -73,24 +84,54 @@
               <label class="form-label">4-Digit Access PIN</label>
               <input type="password" class="form-control" id="login-pin" maxlength="4" placeholder="••••" required>
             </div>
-            <button type="submit" class="btn-primary">AUTHENTICATE & ENTER PORTAL</button>
+            <button type="submit" class="btn-primary">LOGIN TO B2B FRANCHISE PORTAL</button>
           </form>
 
           <!-- Executive Admin Link Footer -->
           <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center;">
             <span style="font-size: 0.82rem; color: var(--text-muted);">Executive Administrator? </span>
-            <a href="/admin-login" style="color: var(--crystal-cyan); font-family: var(--font-mono); font-weight: 700; font-size: 0.82rem; text-decoration: none;" onclick="navigateRoute('/admin-login', event)">🛡️ Go to Admin Portal Login &rarr;</a>
+            <a href="/admin-login" style="color: var(--crystal-cyan); font-family: var(--font-mono); font-weight: 700; font-size: 0.82rem; text-decoration: none;" onclick="navigateRoute('/admin-login', event)">🛡️ Master Admin Login &rarr;</a>
           </div>
         </div>
+
+        <!-- B2C LOGIN CARD -->
+        <div class="glass-card" id="card-login-b2c" style="display: none; border-color: var(--gold-accent);">
+          <div class="card-title" style="color: var(--gold-accent);">
+            <span class="bb-periodic-badge badge-b2c"><span class="num">79</span><span class="sym">Au</span><span class="mass">196.96</span></span>
+            <span>B2C Retail Consumer Order Tracking</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 18px;">
+            Enter your registered Phone Number or Retail Order ID to track your purchase, doorstep delivery, and service status.
+          </p>
+
+          <form id="form-login-b2c">
+            <div class="form-group">
+              <label class="form-label">Customer Mobile Phone Number</label>
+              <input type="tel" class="form-control" id="login-b2c-phone" placeholder="e.g. 9876543210" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Optional Retail Order ID</label>
+              <input type="text" class="form-control" id="login-b2c-order" placeholder="e.g. B2C-9001">
+            </div>
+            <button type="submit" class="btn-primary" style="background: linear-gradient(135deg, #D4AF37 0%, #AA820A 100%); color: #000;">ACCESS B2C RETAIL PORTAL</button>
+          </form>
+
+          <!-- Executive Admin Link Footer -->
+          <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center;">
+            <span style="font-size: 0.82rem; color: var(--text-muted);">Executive Administrator? </span>
+            <a href="/admin-login" style="color: var(--crystal-cyan); font-family: var(--font-mono); font-weight: 700; font-size: 0.82rem; text-decoration: none;" onclick="navigateRoute('/admin-login', event)">🛡️ Master Admin Login &rarr;</a>
+          </div>
+        </div>
+
       </div>
     </section>
 
     <!-- ==================== ROUTE 2: /admin-login (EXECUTIVE ADMIN DEDICATED LOGIN) ==================== -->
     <section class="tab-pane" id="route-admin-login">
       <div class="bb-hero-banner" style="border-color: var(--crystal-cyan); height: 220px;">
-        <img src="/assets/rv_desert.jpg" alt="Albuquerque RV Desert Lab" class="hero-bg-img">
+        <img src="/assets/rv_desert.jpg" alt="Albuquerque RV Lab" class="hero-bg-img">
         <div class="hero-overlay">
-          <div class="hero-quote-text" style="color: var(--crystal-cyan);">"A man provides. And he does it even when he's not appreciated, or respected, or even loved. He simply bears up and he does it."</div>
+          <div class="hero-quote-text" style="color: var(--crystal-cyan);">"A man provides. And he does it even when he's not appreciated... He simply bears up and he does it."</div>
           <div class="hero-quote-speaker">— Gustavo Fring | Executive Command Gateway</div>
         </div>
       </div>
@@ -99,10 +140,10 @@
         <div class="glass-card" style="border-color: var(--crystal-cyan);">
           <div class="card-title" style="color: var(--crystal-cyan);">
             <span class="bb-periodic-badge" style="border-color: var(--crystal-cyan); box-shadow: 0 0 10px var(--crystal-cyan-glow);"><span class="num">56</span><span class="sym">Ba</span><span class="mass">137.33</span></span>
-            <span>Executive Admin Dedicated Login</span>
+            <span>Executive Admin Master Login</span>
           </div>
           <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 18px;">
-            Restricted master administrative gateway for franchise onboarding, order assignments, and network controls.
+            Restricted master executive hub to manage both B2B Franchise Operations and B2C Retail Operations.
           </p>
 
           <form id="form-login-admin">
@@ -117,37 +158,36 @@
             <button type="submit" class="btn-primary" style="background: linear-gradient(135deg, #00E5FF 0%, #0088CC 100%); color: #000;">LOGIN TO EXECUTIVE ADMIN HUB</button>
           </form>
 
-          <!-- Back to Franchise Login Footer -->
           <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center;">
-            <a href="/login" style="color: var(--emerald-green); font-family: var(--font-mono); font-weight: 700; font-size: 0.82rem; text-decoration: none;" onclick="navigateRoute('/login', event)">&larr; Back to Franchise Owner Login</a>
+            <a href="/login" style="color: var(--emerald-green); font-family: var(--font-mono); font-weight: 700; font-size: 0.82rem; text-decoration: none;" onclick="navigateRoute('/login', event)">&larr; Back to Portal Homepage</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==================== ROUTE 3: /dashboard ==================== -->
+    <!-- ==================== ROUTE 3: /dashboard or /b2b-dashboard (B2B FRANCHISE DASHBOARD) ==================== -->
     <section class="tab-pane" id="route-dashboard">
-      <div class="bb-hero-banner" style="border-color: var(--gold-accent);">
-        <img src="/assets/saul_justice.png" alt="Saul Goodman" class="hero-bg-img">
+      <div class="bb-hero-banner" style="border-color: var(--emerald-green);">
+        <img src="/assets/saul_justice.png" alt="B2B Franchise Dashboard" class="hero-bg-img">
         <div class="hero-overlay">
-          <div class="hero-quote-text" style="color: var(--gold-accent);">"Did you know that you have rights? The Constitution says you do, and so do I! Better Call Saul!"</div>
-          <div class="hero-quote-speaker">— Saul Goodman | Franchise Partner Portal</div>
+          <div class="hero-quote-text" style="color: var(--emerald-green);">"Did you know that you have rights? Better Call Saul!"</div>
+          <div class="hero-quote-speaker">— Saul Goodman | B2B Franchise Partner Portal</div>
         </div>
       </div>
 
       <div class="grid-3" style="margin-bottom: 24px;">
         <div class="glass-card">
-          <div style="font-family: var(--font-display); font-size: 1.1rem; color: var(--text-muted);">Total Revenue Earned</div>
+          <div style="font-family: var(--font-display); font-size: 1.1rem; color: var(--text-muted);">Total Wholesale Revenue</div>
           <div style="font-family: var(--font-mono); font-size: 1.8rem; font-weight: 800; color: var(--crystal-cyan);" id="dash-revenue">₹0</div>
-          <div style="font-size: 0.78rem; color: var(--text-muted);">From Completed Sales</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">From Completed Orders</div>
         </div>
         <div class="glass-card">
-          <div style="font-family: var(--font-display); font-size: 1.1rem; color: var(--text-muted);">Finished Orders</div>
+          <div style="font-family: var(--font-display); font-size: 1.1rem; color: var(--text-muted);">Finished Wholesale Orders</div>
           <div style="font-family: var(--font-mono); font-size: 1.8rem; font-weight: 800; color: var(--emerald-green);" id="dash-finished-count">0</div>
           <div style="font-size: 0.78rem; color: var(--text-muted);">Delivered Successfully</div>
         </div>
         <div class="glass-card">
-          <div style="font-family: var(--font-display); font-size: 1.1rem; color: var(--text-muted);">Tamil Nadu Rank</div>
+          <div style="font-family: var(--font-display); font-size: 1.1rem; color: var(--text-muted);">Tamil Nadu Network Rank</div>
           <div style="font-family: var(--font-mono); font-size: 1.8rem; font-weight: 800; color: var(--gold-accent);" id="dash-rank">#--</div>
           <div style="font-size: 0.78rem; color: var(--text-muted);">Leaderboard Standing</div>
         </div>
@@ -155,8 +195,8 @@
 
       <div class="glass-card">
         <div class="card-title">
-          <span class="bb-periodic-badge"><span class="num">79</span><span class="sym">Au</span><span class="mass">196.96</span></span>
-          <span>My Store Assigned Orders & Pipeline</span>
+          <span class="bb-periodic-badge badge-b2b"><span class="num">79</span><span class="sym">Au</span><span class="mass">196.96</span></span>
+          <span>B2B Store Assigned Wholesale Orders</span>
         </div>
 
         <div style="overflow-x: auto; width: 100%;">
@@ -178,20 +218,45 @@
       </div>
     </section>
 
-    <!-- ==================== ROUTE 4: /leaderboard ==================== -->
+    <!-- ==================== ROUTE 4: /b2c-portal (B2C CONSUMER PORTAL) ==================== -->
+    <section class="tab-pane" id="route-b2c-portal">
+      <div class="bb-hero-banner" style="border-color: var(--gold-accent);">
+        <img src="/assets/hazmat_suits.jpg" alt="B2C Consumer Portal" class="hero-bg-img">
+        <div class="hero-overlay">
+          <div class="hero-quote-text" style="color: var(--gold-accent);">"Welcome to the GUS Retail Network. Direct-to-Consumer Quality & Doorstep Delivery."</div>
+          <div class="hero-quote-speaker">— GUS Enterprise | B2C Consumer Retail Portal</div>
+        </div>
+      </div>
+
+      <div class="glass-card" style="margin-bottom: 20px; border-color: var(--gold-accent);">
+        <div class="card-title" style="color: var(--gold-accent);">
+          <span class="bb-periodic-badge badge-b2c"><span class="num">79</span><span class="sym">Au</span><span class="mass">196.96</span></span>
+          <span>My Retail Consumer Orders & Logistics Tracking</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.88rem;">
+          Track live dispatch status, delivery updates, and purchase history.
+        </p>
+      </div>
+
+      <div id="b2c-orders-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- ==================== ROUTE 5: /leaderboard ==================== -->
     <section class="tab-pane" id="route-leaderboard">
       <div class="bb-hero-banner">
-        <img src="/assets/hazmat_suits.jpg" alt="Hazmat Suits Empire Business" class="hero-bg-img">
+        <img src="/assets/hazmat_suits.jpg" alt="B2B Empire Leaderboard" class="hero-bg-img">
         <div class="hero-overlay">
           <div class="hero-quote-text">"You asked me if I was in the meth business or the money business. Neither. I'm in the empire business."</div>
-          <div class="hero-quote-speaker">— Walter White / Heisenberg | Empire Revenue Standings</div>
+          <div class="hero-quote-speaker">— Walter White / Heisenberg | B2B Network Revenue Standings</div>
         </div>
       </div>
 
       <div class="glass-card">
         <div class="card-title">
           <span class="bb-periodic-badge"><span class="num">28</span><span class="sym">Ni</span><span class="mass">58.693</span></span>
-          <span>Tamil Nadu Network Revenue Ranking (Completed Sales ₹)</span>
+          <span>Tamil Nadu B2B Network Revenue Ranking (Completed Sales ₹)</span>
         </div>
         <div id="leaderboard-container">
           <!-- Rendered dynamically -->
@@ -199,156 +264,224 @@
       </div>
     </section>
 
-    <!-- ==================== ROUTE 5: /admin ==================== -->
+    <!-- ==================== ROUTE 6: /admin (EXECUTIVE ADMIN HUB WITH DUAL B2B & B2C MODULES) ==================== -->
     <section class="tab-pane" id="route-admin">
-      <div class="bb-hero-banner" style="border-color: var(--crystal-cyan); height: 220px;">
-        <img src="/assets/rv_desert.jpg" alt="Gus Fring Executive Hub" class="hero-bg-img">
+      <div class="bb-hero-banner" style="border-color: var(--crystal-cyan); height: 200px;">
+        <img src="/assets/rv_desert.jpg" alt="Gus Fring Executive Control Hub" class="hero-bg-img">
         <div class="hero-overlay">
-          <div class="hero-quote-text" style="color: var(--crystal-cyan);">"A man provides. And he does it even when he's not appreciated, or respected, or even loved. He simply bears up and he does it."</div>
-          <div class="hero-quote-speaker">— Gustavo Fring | Executive Admin Control Hub</div>
+          <div class="hero-quote-text" style="color: var(--crystal-cyan);">"A man provides. And he does it even when he's not appreciated, or respected, or even loved."</div>
+          <div class="hero-quote-speaker">— Gustavo Fring | GUS Executive Dual Module Control Hub</div>
         </div>
       </div>
 
-      <!-- Supabase Connection Status Bar -->
-      <div class="glass-card" style="margin-bottom: 20px; background: rgba(0, 230, 118, 0.08); border-color: var(--emerald-green); padding: 14px 18px;">
-        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
-          <div>
-            <strong style="color: var(--emerald-green); font-family: var(--font-mono); font-size: 0.88rem;">⚡ SUPABASE DATABASE INTEGRATION:</strong>
-            <span style="color: var(--text-muted); font-size: 0.8rem; margin-left: 6px;">Run <code style="color: var(--crystal-cyan); font-weight: 700;">schema.sql</code> in your Supabase SQL Editor to connect live!</span>
+      <!-- DUAL ADMIN MODULE NAVIGATION TABS -->
+      <div class="admin-module-nav">
+        <button type="button" class="admin-module-btn active-b2b" id="admin-tab-b2b" onclick="switchAdminModule('b2b')">
+          🏢 B2B FRANCHISE OPERATIONS MODULE
+        </button>
+        <button type="button" class="admin-module-btn" id="admin-tab-b2c" onclick="switchAdminModule('b2c')">
+          🛍️ B2C CONSUMER RETAIL MODULE
+        </button>
+      </div>
+
+      <!-- ==================== MODULE 1: B2B FRANCHISE OPERATIONS ==================== -->
+      <div id="admin-module-b2b">
+        <div class="grid-2" style="margin-bottom: 24px;">
+          <!-- FORM 1: Add New B2B Franchise Location -->
+          <div class="glass-card">
+            <div class="card-title">
+              <span class="bb-periodic-badge badge-b2b"><span class="num">57</span><span class="sym">Fr</span><span class="mass">138.9</span></span>
+              <span>B2B: Add New Franchise Partner Location</span>
+            </div>
+
+            <form id="form-admin-add-franchise">
+              <div class="form-group">
+                <label class="form-label">Franchise ID (Login Identifier)</label>
+                <input type="text" class="form-control" id="input-franchise-id" placeholder="e.g. FRAN-TIRUNELVELI" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Franchise Owner Name</label>
+                <input type="text" class="form-control" id="input-franchise-name" placeholder="e.g. Suresh Kumar" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Location / Region</label>
+                <input type="text" class="form-control" id="input-franchise-location" placeholder="e.g. Tirunelveli High Road" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">4-Digit Access PIN</label>
+                <input type="text" class="form-control" id="input-franchise-pin" maxlength="4" placeholder="8899" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Partner Type</label>
+                <select class="form-control" id="select-franchise-type" required>
+                  <option value="Micro">Micro Franchise</option>
+                  <option value="Master">Master Partner</option>
+                </select>
+              </div>
+              <button type="submit" class="btn-primary" style="background: linear-gradient(135deg, #00E5FF 0%, #0088CC 100%); color: #000;">➕ ADD B2B FRANCHISE PARTNER</button>
+            </form>
           </div>
-          <span class="status-pill status-finished">Supabase Ready</span>
+
+          <!-- LIST: Existing Active Franchises & PINs -->
+          <div class="glass-card">
+            <div class="card-title">
+              <span class="bb-periodic-badge badge-b2b"><span class="num">11</span><span class="sym">Na</span><span class="mass">22.989</span></span>
+              <span>B2B: Active Franchise Roster & Credentials</span>
+            </div>
+
+            <div style="max-height: 380px; overflow-y: auto; width: 100%;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem;">
+                <thead>
+                  <tr style="border-bottom: 1.5px solid var(--smoke-border); color: var(--text-muted); font-family: var(--font-mono);">
+                    <th style="padding: 8px;">FRANCHISE ID</th>
+                    <th style="padding: 8px;">OWNER</th>
+                    <th style="padding: 8px;">LOCATION</th>
+                    <th style="padding: 8px;">PIN</th>
+                  </tr>
+                </thead>
+                <tbody id="tbl-admin-franchises">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <!-- Assign Order to B2B Franchise -->
+          <div class="glass-card">
+            <div class="card-title">
+              <span class="bb-periodic-badge badge-b2b"><span class="num">29</span><span class="sym">Cu</span><span class="mass">63.546</span></span>
+              <span>B2B: Assign Wholesale Order to Franchise</span>
+            </div>
+
+            <form id="form-admin-add-order">
+              <div class="form-group">
+                <label class="form-label">Franchise Owner</label>
+                <select class="form-control" id="select-admin-franchise" required></select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Customer Name</label>
+                <input type="text" class="form-control" id="input-customer" placeholder="e.g. Saul Goodman" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Item / Product Details</label>
+                <input type="text" class="form-control" id="input-item" placeholder="e.g. iPhone 15 Pro Max 256GB" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Total Revenue Amount (₹)</label>
+                <input type="number" class="form-control" id="input-amount" placeholder="45000" min="1" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Initial Status</label>
+                <select class="form-control" id="select-status" required>
+                  <option value="Pending">Pending ⏳</option>
+                  <option value="Processing">Processing ⚙️</option>
+                  <option value="Finished">Finished ✅</option>
+                </select>
+              </div>
+              <button type="submit" class="btn-primary">SUBMIT WHOLESALE ORDER</button>
+            </form>
+          </div>
+
+          <!-- B2B Order Manager -->
+          <div class="glass-card">
+            <div class="card-title">
+              <span class="bb-periodic-badge badge-b2b"><span class="num">74</span><span class="sym">W</span><span class="mass">183.84</span></span>
+              <span>B2B: Wholesale Order Status Manager</span>
+            </div>
+
+            <div class="search-filter-bar">
+              <input type="text" class="search-input" id="search-admin-orders" placeholder="🔍 Search wholesale orders..." onkeyup="filterAdminOrders()">
+            </div>
+
+            <div style="max-height: 380px; overflow-y: auto; width: 100%;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem;">
+                <thead>
+                  <tr style="border-bottom: 1.5px solid var(--smoke-border); color: var(--text-muted); font-family: var(--font-mono);">
+                    <th style="padding: 8px;">ORDER</th>
+                    <th style="padding: 8px;">FRANCHISE</th>
+                    <th style="padding: 8px;">REVENUE</th>
+                    <th style="padding: 8px;">STATUS ACTION</th>
+                  </tr>
+                </thead>
+                <tbody id="tbl-admin-orders">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- SECTION: Add New Franchise & Manage Existing Franchises -->
-      <div class="grid-2" style="margin-bottom: 24px;">
-        <!-- FORM 1: Add New Franchise Location -->
-        <div class="glass-card">
-          <div class="card-title">
-            <span class="bb-periodic-badge"><span class="num">57</span><span class="sym">Fr</span><span class="mass">138.9</span></span>
-            <span>Add New Franchise Partner Location</span>
+      <!-- ==================== MODULE 2: B2C CONSUMER RETAIL OPERATIONS ==================== -->
+      <div id="admin-module-b2c" style="display: none;">
+        <div class="grid-2">
+          <!-- FORM: Add Direct B2C Retail Order -->
+          <div class="glass-card" style="border-color: var(--crystal-cyan);">
+            <div class="card-title" style="color: var(--crystal-cyan);">
+              <span class="bb-periodic-badge badge-b2c"><span class="num">79</span><span class="sym">Au</span><span class="mass">196.96</span></span>
+              <span>B2C: Create Direct Consumer Retail Order</span>
+            </div>
+
+            <form id="form-admin-add-b2c-order">
+              <div class="form-group">
+                <label class="form-label">Consumer Customer Name</label>
+                <input type="text" class="form-control" id="input-b2c-name" placeholder="e.g. Ramesh Kumar" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Customer Mobile Phone Number</label>
+                <input type="tel" class="form-control" id="input-b2c-phone" placeholder="e.g. 9876543210" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Retail Product Details</label>
+                <input type="text" class="form-control" id="input-b2c-item" placeholder="e.g. iPhone 15 128GB Blue" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Total Amount Paid (₹)</label>
+                <input type="number" class="form-control" id="input-b2c-amount" placeholder="64900" min="1" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Order Delivery Status</label>
+                <select class="form-control" id="select-b2c-status" required>
+                  <option value="Processing">Processing ⚙️</option>
+                  <option value="Dispatched">Dispatched 🚚</option>
+                  <option value="Delivered">Delivered ✅</option>
+                </select>
+              </div>
+              <button type="submit" class="btn-primary" style="background: linear-gradient(135deg, #00E5FF 0%, #0088CC 100%); color: #000;">CREATE B2C RETAIL ORDER</button>
+            </form>
           </div>
 
-          <form id="form-admin-add-franchise">
-            <div class="form-group">
-              <label class="form-label">Franchise ID (Login Identifier)</label>
-              <input type="text" class="form-control" id="input-franchise-id" placeholder="e.g. FRAN-TIRUNELVELI" required>
+          <!-- B2C Retail Orders Manager -->
+          <div class="glass-card" style="border-color: var(--crystal-cyan);">
+            <div class="card-title" style="color: var(--crystal-cyan);">
+              <span class="bb-periodic-badge badge-b2c"><span class="num">42</span><span class="sym">Mo</span><span class="mass">95.95</span></span>
+              <span>B2C: Consumer Retail Order & Dispatch Manager</span>
             </div>
-            <div class="form-group">
-              <label class="form-label">Franchise Owner Name</label>
-              <input type="text" class="form-control" id="input-franchise-name" placeholder="e.g. Suresh Kumar" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Location / Region</label>
-              <input type="text" class="form-control" id="input-franchise-location" placeholder="e.g. Tirunelveli High Road" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">4-Digit Access PIN</label>
-              <input type="text" class="form-control" id="input-franchise-pin" maxlength="4" placeholder="8899" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Partner Type</label>
-              <select class="form-control" id="select-franchise-type" required>
-                <option value="Micro">Micro Franchise</option>
-                <option value="Master">Master Partner</option>
-              </select>
-            </div>
-            <button type="submit" class="btn-primary" style="background: linear-gradient(135deg, #00E5FF 0%, #0088CC 100%); color: #000;">➕ ADD FRANCHISE PARTNER</button>
-          </form>
-        </div>
 
-        <!-- LIST: Existing Active Franchises & PINs -->
-        <div class="glass-card">
-          <div class="card-title">
-            <span class="bb-periodic-badge"><span class="num">11</span><span class="sym">Na</span><span class="mass">22.989</span></span>
-            <span>Active Franchise Roster & Credentials</span>
-          </div>
-
-          <div style="max-height: 400px; overflow-y: auto; overflow-x: auto; width: 100%;">
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem;">
-              <thead>
-                <tr style="border-bottom: 1.5px solid var(--smoke-border); color: var(--text-muted); font-family: var(--font-mono);">
-                  <th style="padding: 8px;">FRANCHISE ID</th>
-                  <th style="padding: 8px;">OWNER</th>
-                  <th style="padding: 8px;">LOCATION</th>
-                  <th style="padding: 8px;">PIN</th>
-                </tr>
-              </thead>
-              <tbody id="tbl-admin-franchises">
-                <!-- Rendered dynamically -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- SECTION: Order Assignment & Order Management -->
-      <div class="grid-2">
-        <div class="glass-card">
-          <div class="card-title">
-            <span class="bb-periodic-badge"><span class="num">29</span><span class="sym">Cu</span><span class="mass">63.546</span></span>
-            <span>Assign Order to Franchise Owner</span>
-          </div>
-
-          <form id="form-admin-add-order">
-            <div class="form-group">
-              <label class="form-label">Franchise Owner</label>
-              <select class="form-control" id="select-admin-franchise" required></select>
+            <div style="max-height: 420px; overflow-y: auto; width: 100%;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem;">
+                <thead>
+                  <tr style="border-bottom: 1.5px solid var(--smoke-border); color: var(--text-muted); font-family: var(--font-mono);">
+                    <th style="padding: 8px;">ORDER ID</th>
+                    <th style="padding: 8px;">CUSTOMER</th>
+                    <th style="padding: 8px;">PRODUCT</th>
+                    <th style="padding: 8px;">AMOUNT</th>
+                    <th style="padding: 8px;">DISPATCH STATUS</th>
+                  </tr>
+                </thead>
+                <tbody id="tbl-admin-b2c-orders">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
             </div>
-            <div class="form-group">
-              <label class="form-label">Customer Name</label>
-              <input type="text" class="form-control" id="input-customer" placeholder="e.g. Saul Goodman" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Item / Product Details</label>
-              <input type="text" class="form-control" id="input-item" placeholder="e.g. iPhone 15 Pro Max 256GB" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Total Revenue Amount (₹)</label>
-              <input type="number" class="form-control" id="input-amount" placeholder="45000" min="1" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Initial Order Status</label>
-              <select class="form-control" id="select-status" required>
-                <option value="Pending">Pending ⏳</option>
-                <option value="Processing">Processing ⚙️</option>
-                <option value="Finished">Finished ✅</option>
-              </select>
-            </div>
-            <button type="submit" class="btn-primary">SUBMIT & ASSIGN ORDER</button>
-          </form>
-        </div>
-
-        <div class="glass-card">
-          <div class="card-title">
-            <span class="bb-periodic-badge"><span class="num">74</span><span class="sym">W</span><span class="mass">183.84</span></span>
-            <span>Network Order Status Manager</span>
-          </div>
-
-          <div class="search-filter-bar">
-            <input type="text" class="search-input" id="search-admin-orders" placeholder="🔍 Search orders by ID or Customer..." onkeyup="filterAdminOrders()">
-          </div>
-
-          <div style="max-height: 380px; overflow-y: auto; overflow-x: auto; width: 100%;">
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem;">
-              <thead>
-                <tr style="border-bottom: 1.5px solid var(--smoke-border); color: var(--text-muted); font-family: var(--font-mono);">
-                  <th style="padding: 8px;">ORDER</th>
-                  <th style="padding: 8px;">FRANCHISE</th>
-                  <th style="padding: 8px;">REVENUE</th>
-                  <th style="padding: 8px;">STATUS ACTION</th>
-                </tr>
-              </thead>
-              <tbody id="tbl-admin-orders">
-                <!-- Rendered dynamically -->
-              </tbody>
-            </table>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==================== ROUTE 6: /directory ==================== -->
+    <!-- ==================== ROUTE 7: /directory ==================== -->
     <section class="tab-pane" id="route-directory">
       <div class="bb-hero-banner">
         <img src="/assets/mike_ehrmantraut.jpg" alt="Mike Ehrmantraut" class="hero-bg-img">
@@ -364,7 +497,7 @@
           <span>Tamil Nadu Master & Micro Franchise Directory</span>
         </div>
         <p style="color: var(--text-muted); font-size: 0.88rem;">
-          Showing active Master Partner Vinoth (Sivagangai) and regional Micro Franchise locations.
+          Active Master Partner Vinoth (Sivagangai) and regional Micro Franchise locations.
         </p>
       </div>
 
