@@ -65,6 +65,19 @@ window.showToast = function(message) {
   setTimeout(() => toast.remove(), 4000);
 };
 
+// CROSS-TAB REAL-TIME INSTANT SYNCHRONIZATION ENGINE
+window.addEventListener('storage', (e) => {
+  if (['gus_b2b_franchises', 'gus_b2b_orders', 'gus_b2c_franchises', 'gus_b2c_orders', 'bb_franchises', 'bb_orders'].includes(e.key)) {
+    appState.b2bFranchises = JSON.parse(localStorage.getItem('gus_b2b_franchises')) || INITIAL_B2B_FRANCHISES;
+    appState.b2bOrders = JSON.parse(localStorage.getItem('gus_b2b_orders')) || INITIAL_B2B_ORDERS;
+    appState.b2cFranchises = JSON.parse(localStorage.getItem('gus_b2c_franchises')) || INITIAL_B2C_FRANCHISES;
+    appState.b2cOrders = JSON.parse(localStorage.getItem('gus_b2c_orders')) || INITIAL_B2C_ORDERS;
+    renderAllViews();
+    showToast('⚡ Instant Sync: Data updated from another active tab!');
+  }
+});
+
+
 // Client-side Router
 window.navigateRoute = function(path, event) {
   if (event) event.preventDefault();
