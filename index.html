@@ -25,7 +25,7 @@
         </a>
 
         <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
-          <div class="user-status-pill" id="user-status-pill" style="background: rgba(14,18,24,0.9); padding: 4px 8px; border-radius: 20px; border: 1.5px solid var(--smoke-border); font-family: var(--font-mono); font-size: 0.75rem; white-space: nowrap;">
+          <div class="user-status-pill" id="user-status-pill">
             <span id="user-status-text">🔒 Logged Out</span>
           </div>
           <button class="logout-btn" id="btn-logout" style="display: none;" onclick="logoutUser()">LOGOUT</button>
@@ -138,17 +138,17 @@
       <div class="grid-3" style="margin-bottom: 24px;">
         <div class="glass-card">
           <div style="font-family: var(--font-display); font-size: 1.1rem; color: var(--text-muted);">Total Revenue Earned</div>
-          <div style="font-family: var(--font-mono); font-size: 2rem; font-weight: 800; color: var(--crystal-cyan);" id="dash-revenue">₹0</div>
+          <div style="font-family: var(--font-mono); font-size: 1.8rem; font-weight: 800; color: var(--crystal-cyan);" id="dash-revenue">₹0</div>
           <div style="font-size: 0.78rem; color: var(--text-muted);">From Completed Sales</div>
         </div>
         <div class="glass-card">
           <div style="font-family: var(--font-display); font-size: 1.1rem; color: var(--text-muted);">Finished Orders</div>
-          <div style="font-family: var(--font-mono); font-size: 2rem; font-weight: 800; color: var(--emerald-green);" id="dash-finished-count">0</div>
+          <div style="font-family: var(--font-mono); font-size: 1.8rem; font-weight: 800; color: var(--emerald-green);" id="dash-finished-count">0</div>
           <div style="font-size: 0.78rem; color: var(--text-muted);">Delivered Successfully</div>
         </div>
         <div class="glass-card">
           <div style="font-family: var(--font-display); font-size: 1.1rem; color: var(--text-muted);">Tamil Nadu Rank</div>
-          <div style="font-family: var(--font-mono); font-size: 2rem; font-weight: 800; color: var(--gold-accent);" id="dash-rank">#--</div>
+          <div style="font-family: var(--font-mono); font-size: 1.8rem; font-weight: 800; color: var(--gold-accent);" id="dash-rank">#--</div>
           <div style="font-size: 0.78rem; color: var(--text-muted);">Leaderboard Standing</div>
         </div>
       </div>
@@ -160,7 +160,7 @@
         </div>
 
         <div style="overflow-x: auto; width: 100%;">
-          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem; min-width: 500px;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem;">
             <thead>
               <tr style="border-bottom: 1.5px solid var(--smoke-border); color: var(--text-muted); font-family: var(--font-mono); font-size: 0.78rem;">
                 <th style="padding: 10px;">ORDER ID</th>
@@ -265,7 +265,7 @@
           </div>
 
           <div style="max-height: 400px; overflow-y: auto; overflow-x: auto; width: 100%;">
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem; min-width: 450px;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem;">
               <thead>
                 <tr style="border-bottom: 1.5px solid var(--smoke-border); color: var(--text-muted); font-family: var(--font-mono);">
                   <th style="padding: 8px;">FRANCHISE ID</th>
@@ -330,7 +330,7 @@
           </div>
 
           <div style="max-height: 380px; overflow-y: auto; overflow-x: auto; width: 100%;">
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem; min-width: 480px;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem;">
               <thead>
                 <tr style="border-bottom: 1.5px solid var(--smoke-border); color: var(--text-muted); font-family: var(--font-mono);">
                   <th style="padding: 8px;">ORDER</th>

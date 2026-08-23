@@ -63,7 +63,7 @@ body {
 }
 
 /* ==========================================================================
-   HEADER LOGO & TOP NAV (RESPONSIVE FLEX & WRAPPING)
+   HEADER LOGO & TOP NAV (CONTAINED RESPONSIVE FLEX)
    ========================================================================== */
 
 .app-navbar {
@@ -74,17 +74,26 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  padding: 12px 20px;
+  padding: 10px 16px;
   width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .nav-container {
   max-width: 1400px;
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.nav-top-row {
+  display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
   width: 100%;
 }
 
@@ -93,21 +102,25 @@ body {
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  flex-shrink: 0;
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 .brand-logo-img {
-  height: 38px;
+  height: 36px;
   width: auto;
+  flex-shrink: 0;
   filter: drop-shadow(0 0 10px var(--emerald-glow));
 }
 
 .brand-title {
   font-family: var(--font-display);
-  font-size: 1.5rem;
-  letter-spacing: 1.5px;
+  font-size: 1.4rem;
+  letter-spacing: 1.2px;
   color: var(--text-primary);
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .brand-title span.highlight {
@@ -115,20 +128,49 @@ body {
   text-shadow: 0 0 12px var(--emerald-glow);
 }
 
+.user-status-pill {
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background: rgba(14,18,24,0.9);
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1.5px solid var(--smoke-border);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  flex-shrink: 1;
+}
+
+#user-status-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+
 .nav-menu {
   display: flex;
   align-items: center;
   gap: 8px;
   list-style: none;
-  flex-wrap: nowrap;
+  width: 100%;
+  overflow-x: auto;
+  padding: 4px 0 2px 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.nav-menu::-webkit-scrollbar {
+  display: none;
 }
 
 .nav-link {
   color: var(--text-muted);
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 0.82rem;
-  padding: 8px 14px;
+  font-size: 0.78rem;
+  padding: 6px 12px;
   border-radius: var(--radius-sm);
   text-decoration: none;
   border: 1.5px solid transparent;
@@ -136,6 +178,7 @@ body {
   text-transform: uppercase;
   white-space: nowrap;
   display: inline-block;
+  flex-shrink: 0;
 }
 
 .nav-link:hover {
@@ -157,8 +200,8 @@ body {
   color: #EF4444;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 0.8rem;
-  padding: 6px 14px;
+  font-size: 0.78rem;
+  padding: 5px 12px;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all 0.2s ease;
@@ -185,8 +228,8 @@ body {
   box-shadow: 0 0 10px var(--emerald-glow);
   color: #FFFFFF;
   font-family: var(--font-mono);
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   padding: 2px 4px;
   border-radius: 4px;
   line-height: 1;
@@ -196,13 +239,13 @@ body {
 }
 
 .bb-periodic-badge .num {
-  font-size: 0.5rem;
+  font-size: 0.48rem;
   opacity: 0.9;
   font-weight: 700;
 }
 
 .bb-periodic-badge .sym {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 800;
   text-align: center;
   align-self: center;
@@ -210,7 +253,7 @@ body {
 }
 
 .bb-periodic-badge .mass {
-  font-size: 0.38rem;
+  font-size: 0.36rem;
   opacity: 0.75;
 }
 
@@ -222,12 +265,12 @@ body {
   position: relative;
   width: 100%;
   max-width: 100%;
-  height: 260px;
+  height: 240px;
   border-radius: var(--radius-md);
   overflow: hidden;
   border: 1.5px solid var(--smoke-border);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .bb-hero-banner img.hero-bg-img {
@@ -246,12 +289,12 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 24px 28px;
+  padding: 20px 24px;
 }
 
 .hero-quote-text {
   font-family: var(--font-typewriter);
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   color: #FFFFFF;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
   max-width: 900px;
@@ -261,8 +304,8 @@ body {
 
 .hero-quote-speaker {
   font-family: var(--font-display);
-  font-size: 1.1rem;
-  letter-spacing: 2px;
+  font-size: 1.05rem;
+  letter-spacing: 1.8px;
   color: var(--emerald-green);
   text-transform: uppercase;
   text-shadow: 0 0 10px var(--emerald-glow);
@@ -274,14 +317,17 @@ body {
 
 .main-content {
   max-width: 1400px;
-  margin: 24px auto;
-  padding: 0 20px;
+  margin: 20px auto;
+  padding: 0 16px;
   width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .tab-pane {
   display: none;
   width: 100%;
+  max-width: 100%;
 }
 
 .tab-pane.active {
@@ -296,23 +342,25 @@ body {
 
 .grid-2 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
   width: 100%;
+  max-width: 100%;
 }
 
 .grid-3 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
   width: 100%;
+  max-width: 100%;
 }
 
 .glass-card {
   background: var(--bg-card);
   border: 1.5px solid var(--smoke-border);
   border-radius: var(--radius-md);
-  padding: 20px;
+  padding: 18px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
   transition: border-color 0.25s ease;
   width: 100%;
@@ -326,10 +374,10 @@ body {
 
 .card-title {
   font-family: var(--font-display);
-  font-size: 1.45rem;
-  letter-spacing: 1.2px;
+  font-size: 1.35rem;
+  letter-spacing: 1px;
   color: var(--text-primary);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   display: flex;
   align-items: flex-start;
   gap: 10px;
@@ -337,51 +385,22 @@ body {
 }
 
 /* ==========================================================================
-   SEARCH & FILTERS
-   ========================================================================== */
-
-.search-filter-bar {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 16px;
-  width: 100%;
-}
-
-.search-input {
-  flex: 1;
-  background: rgba(8, 10, 14, 0.9);
-  border: 1.5px solid var(--smoke-border);
-  border-radius: var(--radius-sm);
-  padding: 10px 14px;
-  color: var(--text-primary);
-  font-family: var(--font-mono);
-  font-size: 0.88rem;
-  width: 100%;
-}
-
-.search-input:focus {
-  outline: none;
-  border-color: var(--emerald-green);
-  box-shadow: 0 0 14px var(--emerald-glow);
-}
-
-/* ==========================================================================
    FORMS & BUTTONS
    ========================================================================== */
 
 .form-group {
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   width: 100%;
 }
 
 .form-label {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 6px;
+  margin-bottom: 5px;
 }
 
 .form-control {
@@ -390,10 +409,10 @@ body {
   background: rgba(8, 10, 14, 0.95);
   border: 1.5px solid var(--smoke-border);
   border-radius: var(--radius-sm);
-  padding: 10px 14px;
+  padding: 9px 12px;
   color: var(--text-primary);
   font-family: var(--font-mono);
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   transition: all 0.25s ease;
   text-overflow: ellipsis;
 }
@@ -409,8 +428,8 @@ select.form-control {
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%3c00E676' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 12px center;
-  background-size: 16px;
-  padding-right: 36px;
+  background-size: 14px;
+  padding-right: 32px;
 }
 
 .btn-primary {
@@ -418,15 +437,15 @@ select.form-control {
   background: linear-gradient(135deg, #00E676 0%, #00A859 100%);
   color: var(--bg-dark);
   font-family: var(--font-display);
-  font-size: 1.25rem;
-  letter-spacing: 1.8px;
-  padding: 12px 20px;
+  font-size: 1.2rem;
+  letter-spacing: 1.5px;
+  padding: 10px 18px;
   border: none;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all 0.25s ease;
   box-shadow: 0 4px 16px var(--emerald-glow);
-  min-height: 46px;
+  min-height: 44px;
 }
 
 .btn-primary:hover {
@@ -443,12 +462,12 @@ select.form-control {
   background: rgba(14, 18, 24, 0.9);
   border: 1.5px solid var(--smoke-border);
   border-radius: var(--radius-md);
-  padding: 14px 18px;
+  padding: 12px 16px;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
+  gap: 12px;
   transition: all 0.25s ease;
   width: 100%;
 }
@@ -465,15 +484,15 @@ select.form-control {
 }
 
 .rank-badge {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-mono);
   font-weight: 800;
-  font-size: 1rem;
+  font-size: 0.95rem;
   background: rgba(255, 255, 255, 0.05);
   border: 1.5px solid var(--smoke-border);
   color: var(--text-muted);
@@ -521,12 +540,12 @@ select.form-control {
   box-shadow: 0 8px 25px var(--emerald-glow);
   color: #FFF;
   font-family: var(--font-mono);
-  font-size: 0.85rem;
-  padding: 12px 18px;
+  font-size: 0.82rem;
+  padding: 10px 14px;
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   animation: slideInRight 0.3s ease forwards;
 }
 
@@ -536,139 +555,74 @@ select.form-control {
 }
 
 /* ==========================================================================
-   TABLE RESPONSIVENESS (SMOOTH HORIZONTAL SCROLL)
+   RESPONSIVE MEDIA QUERIES
    ========================================================================== */
 
-div[style*="overflow-x: auto"],
-div[style*="overflow-y: auto"] {
-  max-width: 100%;
-  border-radius: var(--radius-sm);
-  -webkit-overflow-scrolling: touch;
-}
-
-/* ==========================================================================
-   RESPONSIVE MEDIA QUERIES FOR TABLETS & MOBILE PHONES
-   ========================================================================== */
-
-@media (max-width: 1024px) {
-  .nav-container {
-    flex-wrap: wrap;
-  }
-}
-
-@media (max-width: 860px) {
+@media (max-width: 768px) {
   .app-navbar {
-    padding: 10px 14px;
-  }
-
-  .nav-container {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-  }
-
-  .nav-top-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-  }
-
-  .nav-menu {
-    width: 100%;
-    overflow-x: auto;
-    padding: 4px 0 6px 0;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .nav-menu::-webkit-scrollbar {
-    display: none;
-  }
-
-  .nav-link {
-    font-size: 0.75rem;
-    padding: 6px 10px;
+    padding: 8px 12px;
   }
 
   .brand-title {
-    font-size: 1.2rem;
-    letter-spacing: 1px;
+    font-size: 1.15rem;
   }
 
   .brand-logo-img {
-    height: 32px;
+    height: 30px;
+  }
+
+  .user-status-pill {
+    max-width: 140px;
+    font-size: 0.7rem;
+    padding: 3px 8px;
   }
 
   .main-content {
-    margin: 16px auto;
-    padding: 0 12px;
+    margin: 12px auto;
+    padding: 0 10px;
   }
 
   .bb-hero-banner {
-    height: 180px;
-    margin-bottom: 16px;
+    height: 160px;
+    margin-bottom: 14px;
   }
 
   .bb-hero-banner .hero-overlay {
-    padding: 12px 14px;
+    padding: 12px;
   }
 
   .hero-quote-text {
-    font-size: 0.88rem;
-    line-height: 1.3;
-    margin-bottom: 4px;
+    font-size: 0.85rem;
+    line-height: 1.25;
   }
 
   .hero-quote-speaker {
-    font-size: 0.75rem;
-    letter-spacing: 1px;
+    font-size: 0.72rem;
   }
 
   .grid-2, .grid-3 {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 14px;
   }
 
   .glass-card {
-    padding: 16px 12px;
+    padding: 14px 10px;
   }
 
   .card-title {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     gap: 8px;
   }
 
-  .bb-periodic-badge {
-    width: 32px;
-    height: 32px;
-  }
-
-  .bb-periodic-badge .sym {
-    font-size: 0.85rem;
-  }
-
   .leaderboard-row {
-    padding: 10px 12px;
+    padding: 10px;
     gap: 8px;
     flex-wrap: wrap;
   }
 
-  .rank-badge {
-    width: 32px;
-    height: 32px;
-    font-size: 0.85rem;
-  }
-
   #toast-container {
-    top: 120px;
-    right: 12px;
-    left: 12px;
-  }
-
-  .toast {
-    font-size: 0.8rem;
-    padding: 10px 12px;
+    top: 110px;
+    right: 10px;
+    left: 10px;
   }
 }
