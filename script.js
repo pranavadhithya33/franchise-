@@ -92,8 +92,10 @@ window.addEventListener('popstate', () => {
 document.addEventListener('DOMContentLoaded', async () => {
   initForms();
   if (window.dbHelper) {
-    appState.b2bFranchises = await window.dbHelper.fetchFranchises(appState.b2bFranchises);
-    appState.b2bOrders = await window.dbHelper.fetchOrders(appState.b2bOrders);
+    appState.b2bFranchises = await window.dbHelper.fetchB2BFranchises(appState.b2bFranchises);
+    appState.b2bOrders = await window.dbHelper.fetchB2BOrders(appState.b2bOrders);
+    appState.b2cFranchises = await window.dbHelper.fetchB2CFranchises(appState.b2cFranchises);
+    appState.b2cOrders = await window.dbHelper.fetchB2COrders(appState.b2cOrders);
   }
   renderCurrentRoute();
 });
@@ -322,6 +324,7 @@ function initForms() {
       const newFranchise = { id, name, location, pin, type };
       appState.b2bFranchises.push(newFranchise);
       saveState();
+      if (window.dbHelper) window.dbHelper.createB2BFranchise(newFranchise);
 
       showToast(`B2B Franchise ${id} created!`);
       formAddB2BFranchise.reset();
@@ -348,6 +351,7 @@ function initForms() {
       const newFranchise = { id, name, location, pin, type };
       appState.b2cFranchises.push(newFranchise);
       saveState();
+      if (window.dbHelper) window.dbHelper.createB2CFranchise(newFranchise);
 
       showToast(`B2C Retail Franchise ${id} created!`);
       formAddB2CFranchise.reset();
@@ -377,6 +381,7 @@ function initForms() {
 
       appState.b2bOrders.push(newOrder);
       saveState();
+      if (window.dbHelper) window.dbHelper.createB2BOrder(newOrder);
 
       showToast(`B2B Order ${newOrder.id} assigned to ${franchiseId}`);
       formAddB2BOrder.reset();
@@ -406,6 +411,7 @@ function initForms() {
 
       appState.b2cOrders.push(newOrder);
       saveState();
+      if (window.dbHelper) window.dbHelper.createB2COrder(newOrder);
 
       showToast(`B2C Order ${newOrder.id} assigned to ${franchiseId}`);
       formAddB2COrder.reset();
@@ -713,6 +719,7 @@ window.updateB2BOrderStatus = function(orderId, newStatus) {
   if (ord) {
     ord.status = newStatus;
     saveState();
+    if (window.dbHelper) window.dbHelper.updateB2BOrderStatus(orderId, newStatus);
     showToast(`B2B Order ${orderId} updated to ${newStatus}`);
     renderAllViews();
   }
@@ -723,6 +730,7 @@ window.updateB2COrderStatus = function(orderId, newStatus) {
   if (ord) {
     ord.status = newStatus;
     saveState();
+    if (window.dbHelper) window.dbHelper.updateB2COrderStatus(orderId, newStatus);
     showToast(`B2C Order ${orderId} updated to ${newStatus}`);
     renderAllViews();
   }
