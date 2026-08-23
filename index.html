@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Breaking Bad | Franchise Network Portal</title>
   <meta name="description" content="Authentic Breaking Bad & Better Call Saul Enterprise Operations Portal">
   <link rel="stylesheet" href="/styles.css">
@@ -16,24 +16,26 @@
   <!-- ==================== MAIN TOP NAVIGATION BAR ==================== -->
   <header class="app-navbar">
     <div class="nav-container">
-      <a href="/login" class="brand-header" onclick="navigateRoute('/login', event)">
-        <img src="/assets/bb_title_logo.jpg" alt="Breaking Bad Logo" class="brand-logo-img">
-        <div class="brand-title">
-          <span class="highlight">ONLY GADJETS</span> FRANCHISE PORTAL
+      <div class="nav-top-row">
+        <a href="/login" class="brand-header" onclick="navigateRoute('/login', event)">
+          <img src="/assets/bb_title_logo.jpg" alt="Breaking Bad Logo" class="brand-logo-img">
+          <div class="brand-title">
+            <span class="highlight">ONLY GADJETS</span> FRANCHISE PORTAL
+          </div>
+        </a>
+
+        <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+          <div class="user-status-pill" id="user-status-pill" style="background: rgba(14,18,24,0.9); padding: 4px 8px; border-radius: 20px; border: 1.5px solid var(--smoke-border); font-family: var(--font-mono); font-size: 0.75rem; white-space: nowrap;">
+            <span id="user-status-text">🔒 Logged Out</span>
+          </div>
+          <button class="logout-btn" id="btn-logout" style="display: none;" onclick="logoutUser()">LOGOUT</button>
         </div>
-      </a>
+      </div>
 
       <!-- Navigation Links -->
       <ul class="nav-menu" id="main-nav-menu" style="display: none;">
         <!-- Dynamically injected via script.js -->
       </ul>
-
-      <div style="display: flex; align-items: center; gap: 10px; flex-shrink: 0;">
-        <div class="user-status-pill" id="user-status-pill" style="background: rgba(14,18,24,0.9); padding: 6px 12px; border-radius: 20px; border: 1.5px solid var(--smoke-border); font-family: var(--font-mono); font-size: 0.8rem; white-space: nowrap;">
-          <span id="user-status-text">🔒 Logged Out</span>
-        </div>
-        <button class="logout-btn" id="btn-logout" style="display: none;" onclick="logoutUser()">LOGOUT</button>
-      </div>
     </div>
   </header>
 
@@ -51,14 +53,14 @@
         </div>
       </div>
 
-      <div style="max-width: 650px; margin: 0 auto;">
+      <div style="max-width: 650px; margin: 0 auto; width: 100%;">
         <!-- Franchise Owner Access Card -->
         <div class="glass-card">
           <div class="card-title">
             <span class="bb-periodic-badge"><span class="num">35</span><span class="sym">Br</span><span class="mass">79.904</span></span>
-            Franchise Owner Access Portal
+            <span>Franchise Owner Access Portal</span>
           </div>
-          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 18px;">
             Welcome to the Only Gadjets Network. Enter your assigned Franchise ID (e.g., <code style="color: var(--crystal-cyan); font-weight: 700;">FRAN-SIVAGANGAI</code>) and 4-digit PIN.
           </p>
 
@@ -75,9 +77,9 @@
           </form>
 
           <!-- Executive Admin Link Footer -->
-          <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center;">
-            <span style="font-size: 0.85rem; color: var(--text-muted);">Executive Administrator? </span>
-            <a href="/admin-login" style="color: var(--crystal-cyan); font-family: var(--font-mono); font-weight: 700; font-size: 0.85rem; text-decoration: none;" onclick="navigateRoute('/admin-login', event)">🛡️ Go to Admin Portal Login &rarr;</a>
+          <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center;">
+            <span style="font-size: 0.82rem; color: var(--text-muted);">Executive Administrator? </span>
+            <a href="/admin-login" style="color: var(--crystal-cyan); font-family: var(--font-mono); font-weight: 700; font-size: 0.82rem; text-decoration: none;" onclick="navigateRoute('/admin-login', event)">🛡️ Go to Admin Portal Login &rarr;</a>
           </div>
         </div>
       </div>
@@ -85,7 +87,7 @@
 
     <!-- ==================== ROUTE 2: /admin-login (EXECUTIVE ADMIN DEDICATED LOGIN) ==================== -->
     <section class="tab-pane" id="route-admin-login">
-      <div class="bb-hero-banner" style="border-color: var(--crystal-cyan); height: 260px;">
+      <div class="bb-hero-banner" style="border-color: var(--crystal-cyan); height: 220px;">
         <img src="/assets/rv_desert.jpg" alt="Albuquerque RV Desert Lab" class="hero-bg-img">
         <div class="hero-overlay">
           <div class="hero-quote-text" style="color: var(--crystal-cyan);">"A man provides. And he does it even when he's not appreciated, or respected, or even loved. He simply bears up and he does it."</div>
@@ -93,13 +95,13 @@
         </div>
       </div>
 
-      <div style="max-width: 650px; margin: 0 auto;">
+      <div style="max-width: 650px; margin: 0 auto; width: 100%;">
         <div class="glass-card" style="border-color: var(--crystal-cyan);">
           <div class="card-title" style="color: var(--crystal-cyan);">
             <span class="bb-periodic-badge" style="border-color: var(--crystal-cyan); box-shadow: 0 0 10px var(--crystal-cyan-glow);"><span class="num">56</span><span class="sym">Ba</span><span class="mass">137.33</span></span>
-            Executive Admin Dedicated Login
+            <span>Executive Admin Dedicated Login</span>
           </div>
-          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 18px;">
             Restricted master administrative gateway for franchise onboarding, order assignments, and network controls.
           </p>
 
@@ -116,8 +118,8 @@
           </form>
 
           <!-- Back to Franchise Login Footer -->
-          <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center;">
-            <a href="/login" style="color: var(--emerald-green); font-family: var(--font-mono); font-weight: 700; font-size: 0.85rem; text-decoration: none;" onclick="navigateRoute('/login', event)">&larr; Back to Franchise Owner Login</a>
+          <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center;">
+            <a href="/login" style="color: var(--emerald-green); font-family: var(--font-mono); font-weight: 700; font-size: 0.82rem; text-decoration: none;" onclick="navigateRoute('/login', event)">&larr; Back to Franchise Owner Login</a>
           </div>
         </div>
       </div>
@@ -133,39 +135,39 @@
         </div>
       </div>
 
-      <div class="grid-3" style="margin-bottom: 28px;">
+      <div class="grid-3" style="margin-bottom: 24px;">
         <div class="glass-card">
-          <div style="font-family: var(--font-display); font-size: 1.2rem; color: var(--text-muted);">Total Revenue Earned</div>
-          <div style="font-family: var(--font-mono); font-size: 2.2rem; font-weight: 800; color: var(--crystal-cyan);" id="dash-revenue">₹0</div>
-          <div style="font-size: 0.8rem; color: var(--text-muted);">From Completed Sales</div>
+          <div style="font-family: var(--font-display); font-size: 1.1rem; color: var(--text-muted);">Total Revenue Earned</div>
+          <div style="font-family: var(--font-mono); font-size: 2rem; font-weight: 800; color: var(--crystal-cyan);" id="dash-revenue">₹0</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">From Completed Sales</div>
         </div>
         <div class="glass-card">
-          <div style="font-family: var(--font-display); font-size: 1.2rem; color: var(--text-muted);">Finished Orders</div>
-          <div style="font-family: var(--font-mono); font-size: 2.2rem; font-weight: 800; color: var(--emerald-green);" id="dash-finished-count">0</div>
-          <div style="font-size: 0.8rem; color: var(--text-muted);">Delivered Successfully</div>
+          <div style="font-family: var(--font-display); font-size: 1.1rem; color: var(--text-muted);">Finished Orders</div>
+          <div style="font-family: var(--font-mono); font-size: 2rem; font-weight: 800; color: var(--emerald-green);" id="dash-finished-count">0</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">Delivered Successfully</div>
         </div>
         <div class="glass-card">
-          <div style="font-family: var(--font-display); font-size: 1.2rem; color: var(--text-muted);">Tamil Nadu Rank</div>
-          <div style="font-family: var(--font-mono); font-size: 2.2rem; font-weight: 800; color: var(--gold-accent);" id="dash-rank">#--</div>
-          <div style="font-size: 0.8rem; color: var(--text-muted);">Leaderboard Standing</div>
+          <div style="font-family: var(--font-display); font-size: 1.1rem; color: var(--text-muted);">Tamil Nadu Rank</div>
+          <div style="font-family: var(--font-mono); font-size: 2rem; font-weight: 800; color: var(--gold-accent);" id="dash-rank">#--</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">Leaderboard Standing</div>
         </div>
       </div>
 
       <div class="glass-card">
         <div class="card-title">
           <span class="bb-periodic-badge"><span class="num">79</span><span class="sym">Au</span><span class="mass">196.96</span></span>
-          My Store Assigned Orders & Pipeline
+          <span>My Store Assigned Orders & Pipeline</span>
         </div>
 
-        <div style="overflow-x: auto;">
-          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+        <div style="overflow-x: auto; width: 100%;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem; min-width: 500px;">
             <thead>
-              <tr style="border-bottom: 1.5px solid var(--smoke-border); color: var(--text-muted); font-family: var(--font-mono); font-size: 0.8rem;">
-                <th style="padding: 12px;">ORDER ID</th>
-                <th style="padding: 12px;">CUSTOMER</th>
-                <th style="padding: 12px;">ITEMS</th>
-                <th style="padding: 12px;">REVENUE (₹)</th>
-                <th style="padding: 12px;">STATUS</th>
+              <tr style="border-bottom: 1.5px solid var(--smoke-border); color: var(--text-muted); font-family: var(--font-mono); font-size: 0.78rem;">
+                <th style="padding: 10px;">ORDER ID</th>
+                <th style="padding: 10px;">CUSTOMER</th>
+                <th style="padding: 10px;">ITEMS</th>
+                <th style="padding: 10px;">REVENUE (₹)</th>
+                <th style="padding: 10px;">STATUS</th>
               </tr>
             </thead>
             <tbody id="tbl-my-orders">
@@ -189,7 +191,7 @@
       <div class="glass-card">
         <div class="card-title">
           <span class="bb-periodic-badge"><span class="num">28</span><span class="sym">Ni</span><span class="mass">58.693</span></span>
-          Tamil Nadu Network Revenue Ranking (Completed Sales ₹)
+          <span>Tamil Nadu Network Revenue Ranking (Completed Sales ₹)</span>
         </div>
         <div id="leaderboard-container">
           <!-- Rendered dynamically -->
@@ -199,7 +201,7 @@
 
     <!-- ==================== ROUTE 5: /admin ==================== -->
     <section class="tab-pane" id="route-admin">
-      <div class="bb-hero-banner" style="border-color: var(--crystal-cyan); height: 240px;">
+      <div class="bb-hero-banner" style="border-color: var(--crystal-cyan); height: 220px;">
         <img src="/assets/rv_desert.jpg" alt="Gus Fring Executive Hub" class="hero-bg-img">
         <div class="hero-overlay">
           <div class="hero-quote-text" style="color: var(--crystal-cyan);">"A man provides. And he does it even when he's not appreciated, or respected, or even loved. He simply bears up and he does it."</div>
@@ -208,23 +210,23 @@
       </div>
 
       <!-- Supabase Connection Status Bar -->
-      <div class="glass-card" style="margin-bottom: 24px; background: rgba(0, 230, 118, 0.08); border-color: var(--emerald-green);">
-        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+      <div class="glass-card" style="margin-bottom: 20px; background: rgba(0, 230, 118, 0.08); border-color: var(--emerald-green); padding: 14px 18px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
           <div>
-            <strong style="color: var(--emerald-green); font-family: var(--font-mono); font-size: 0.95rem;">⚡ SUPABASE DATABASE INTEGRATION:</strong>
-            <span style="color: var(--text-muted); font-size: 0.85rem; margin-left: 8px;">Run <code style="color: var(--crystal-cyan); font-weight: 700;">schema.sql</code> in your Supabase SQL Editor to connect live!</span>
+            <strong style="color: var(--emerald-green); font-family: var(--font-mono); font-size: 0.88rem;">⚡ SUPABASE DATABASE INTEGRATION:</strong>
+            <span style="color: var(--text-muted); font-size: 0.8rem; margin-left: 6px;">Run <code style="color: var(--crystal-cyan); font-weight: 700;">schema.sql</code> in your Supabase SQL Editor to connect live!</span>
           </div>
           <span class="status-pill status-finished">Supabase Ready</span>
         </div>
       </div>
 
       <!-- SECTION: Add New Franchise & Manage Existing Franchises -->
-      <div class="grid-2" style="margin-bottom: 28px;">
+      <div class="grid-2" style="margin-bottom: 24px;">
         <!-- FORM 1: Add New Franchise Location -->
         <div class="glass-card">
           <div class="card-title">
             <span class="bb-periodic-badge"><span class="num">57</span><span class="sym">Fr</span><span class="mass">138.9</span></span>
-            Add New Franchise Partner Location
+            <span>Add New Franchise Partner Location</span>
           </div>
 
           <form id="form-admin-add-franchise">
@@ -259,11 +261,11 @@
         <div class="glass-card">
           <div class="card-title">
             <span class="bb-periodic-badge"><span class="num">11</span><span class="sym">Na</span><span class="mass">22.989</span></span>
-            Active Franchise Roster & Credentials
+            <span>Active Franchise Roster & Credentials</span>
           </div>
 
-          <div style="max-height: 420px; overflow-y: auto;">
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+          <div style="max-height: 400px; overflow-y: auto; overflow-x: auto; width: 100%;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem; min-width: 450px;">
               <thead>
                 <tr style="border-bottom: 1.5px solid var(--smoke-border); color: var(--text-muted); font-family: var(--font-mono);">
                   <th style="padding: 8px;">FRANCHISE ID</th>
@@ -285,7 +287,7 @@
         <div class="glass-card">
           <div class="card-title">
             <span class="bb-periodic-badge"><span class="num">29</span><span class="sym">Cu</span><span class="mass">63.546</span></span>
-            Assign Order to Franchise Owner
+            <span>Assign Order to Franchise Owner</span>
           </div>
 
           <form id="form-admin-add-order">
@@ -320,21 +322,21 @@
         <div class="glass-card">
           <div class="card-title">
             <span class="bb-periodic-badge"><span class="num">74</span><span class="sym">W</span><span class="mass">183.84</span></span>
-            Network Order Status Manager
+            <span>Network Order Status Manager</span>
           </div>
 
           <div class="search-filter-bar">
             <input type="text" class="search-input" id="search-admin-orders" placeholder="🔍 Search orders by ID or Customer..." onkeyup="filterAdminOrders()">
           </div>
 
-          <div style="max-height: 400px; overflow-y: auto;">
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+          <div style="max-height: 380px; overflow-y: auto; overflow-x: auto; width: 100%;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem; min-width: 480px;">
               <thead>
                 <tr style="border-bottom: 1.5px solid var(--smoke-border); color: var(--text-muted); font-family: var(--font-mono);">
-                  <th style="padding: 10px;">ORDER</th>
-                  <th style="padding: 10px;">FRANCHISE</th>
-                  <th style="padding: 10px;">REVENUE</th>
-                  <th style="padding: 10px;">STATUS ACTION</th>
+                  <th style="padding: 8px;">ORDER</th>
+                  <th style="padding: 8px;">FRANCHISE</th>
+                  <th style="padding: 8px;">REVENUE</th>
+                  <th style="padding: 8px;">STATUS ACTION</th>
                 </tr>
               </thead>
               <tbody id="tbl-admin-orders">
@@ -356,12 +358,12 @@
         </div>
       </div>
 
-      <div class="glass-card" style="margin-bottom: 24px;">
+      <div class="glass-card" style="margin-bottom: 20px;">
         <div class="card-title">
           <span class="bb-periodic-badge"><span class="num">42</span><span class="sym">Mo</span><span class="mass">95.95</span></span>
-          Tamil Nadu Master & Micro Franchise Directory
+          <span>Tamil Nadu Master & Micro Franchise Directory</span>
         </div>
-        <p style="color: var(--text-muted); font-size: 0.9rem;">
+        <p style="color: var(--text-muted); font-size: 0.88rem;">
           Showing active Master Partner Vinoth (Sivagangai) and regional Micro Franchise locations.
         </p>
       </div>
