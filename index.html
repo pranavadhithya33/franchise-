@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breaking Bad | Franchise Network Portal</title>
+  <meta name="description" content="Authentic Breaking Bad & Better Call Saul Enterprise Operations Portal">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- ==================== MAIN TOP NAVIGATION BAR ==================== -->
+  <header class="app-navbar">
+    <div class="nav-container">
+      <a href="/login" class="brand-header" onclick="navigateRoute('/login', event)">
+        <img src="/assets/bb_title_logo.jpg" alt="Breaking Bad Logo" class="brand-logo-img">
+        <div class="brand-title">
+          <span class="highlight">ONLY GADJETS</span> FRANCHISE PORTAL
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <ul class="nav-menu" id="main-nav-menu" style="display: none;">
+        <!-- Dynamically injected via script.js -->
+      </ul>
+
+      <div style="display: flex; align-items: center; gap: 10px; flex-shrink: 0;">
+        <div class="user-status-pill" id="user-status-pill" style="background: rgba(14,18,24,0.9); padding: 6px 12px; border-radius: 20px; border: 1.5px solid var(--smoke-border); font-family: var(--font-mono); font-size: 0.8rem; white-space: nowrap;">
+          <span id="user-status-text">🔒 Logged Out</span>
+        </div>
+        <button class="logout-btn" id="btn-logout" style="display: none;" onclick="logoutUser()">LOGOUT</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT CONTAINER ==================== -->
+  <main class="main-content">
+
+    <!-- ==================== ROUTE 1: / or /login (FRANCHISE OWNER LOGIN HOME PAGE) ==================== -->
+    <section class="tab-pane" id="route-login">
+      <!-- High-Resolution Full-Width Hero Banner -->
+      <div class="bb-hero-banner">
+        <img src="/assets/heisenberg_jesse.jpg" alt="Heisenberg & Jesse Pinkman" class="hero-bg-img">
+        <div class="hero-overlay">
+          <div class="hero-quote-text">"I am not in danger, Skyler. I am the danger. A guy opens his door and gets shot, and you think that of me? No. I am the one who knocks!"</div>
+          <div class="hero-quote-speaker">— Walter White / Heisenberg | Franchise Partner Authentication</div>
+        </div>
+      </div>
+
+      <div style="max-width: 650px; margin: 0 auto;">
+        <!-- Franchise Owner Access Card -->
+        <div class="glass-card">
+          <div class="card-title">
+            <span class="bb-periodic-badge"><span class="num">35</span><span class="sym">Br</span><span class="mass">79.904</span></span>
+            Franchise Owner Access Portal
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
+            Welcome to the Only Gadjets Network. Enter your assigned Franchise ID (e.g., <code style="color: var(--crystal-cyan); font-weight: 700;">FRAN-SIVAGANGAI</code>) and 4-digit PIN.
+          </p>
+
+          <form id="form-login-franchise">
+            <div class="form-group">
+              <label class="form-label">Franchise ID</label>
+              <input type="text" class="form-control" id="login-franchise-id" placeholder="e.g. FRAN-SIVAGANGAI" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">4-Digit Access PIN</label>
+              <input type="password" class="form-control" id="login-pin" maxlength="4" placeholder="••••" required>
+            </div>
+            <button type="submit" class="btn-primary">AUTHENTICATE & ENTER PORTAL</button>
+          </form>
+
+          <!-- Executive Admin Link Footer -->
+          <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center;">
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Executive Administrator? </span>
+            <a href="/admin-login" style="color: var(--crystal-cyan); font-family: var(--font-mono); font-weight: 700; font-size: 0.85rem; text-decoration: none;" onclick="navigateRoute('/admin-login', event)">🛡️ Go to Admin Portal Login &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ROUTE 2: /admin-login (EXECUTIVE ADMIN DEDICATED LOGIN) ==================== -->
+    <section class="tab-pane" id="route-admin-login">
+      <div class="bb-hero-banner" style="border-color: var(--crystal-cyan); height: 260px;">
+        <img src="/assets/rv_desert.jpg" alt="Albuquerque RV Desert Lab" class="hero-bg-img">
+        <div class="hero-overlay">
+          <div class="hero-quote-text" style="color: var(--crystal-cyan);">"A man provides. And he does it even when he's not appreciated, or respected, or even loved. He simply bears up and he does it."</div>
+          <div class="hero-quote-speaker">— Gustavo Fring | Executive Command Gateway</div>
+        </div>
+      </div>
+
+      <div style="max-width: 650px; margin: 0 auto;">
+        <div class="glass-card" style="border-color: var(--crystal-cyan);">
+          <div class="card-title" style="color: var(--crystal-cyan);">
+            <span class="bb-periodic-badge" style="border-color: var(--crystal-cyan); box-shadow: 0 0 10px var(--crystal-cyan-glow);"><span class="num">56</span><span class="sym">Ba</span><span class="mass">137.33</span></span>
+            Executive Admin Dedicated Login
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
+            Restricted master administrative gateway for franchise onboarding, order assignments, and network controls.
+          </p>
+
+          <form id="form-login-admin">
+            <div class="form-group">
+              <label class="form-label">Master Admin ID</label>
+              <input type="text" class="form-control" id="login-admin-id" value="ADMIN-01" required readonly style="color: var(--crystal-cyan);">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Master Admin PIN</label>
+              <input type="password" class="form-control" id="login-admin-pin" placeholder="Enter Admin PIN (Demo: 7777)" required>
+            </div>
+            <button type="submit" class="btn-primary" style="background: linear-gradient(135deg, #00E5FF 0%, #0088CC 100%); color: #000;">LOGIN TO EXECUTIVE ADMIN HUB</button>
+          </form>
+
+          <!-- Back to Franchise Login Footer -->
+          <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center;">
+            <a href="/login" style="color: var(--emerald-green); font-family: var(--font-mono); font-weight: 700; font-size: 0.85rem; text-decoration: none;" onclick="navigateRoute('/login', event)">&larr; Back to Franchise Owner Login</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ROUTE 3: /dashboard ==================== -->
+    <section class="tab-pane" id="route-dashboard">
+      <div class="bb-hero-banner" style="border-color: var(--gold-accent);">
+        <img src="/assets/saul_justice.png" alt="Saul Goodman" class="hero-bg-img">
+        <div class="hero-overlay">
+          <div class="hero-quote-text" style="color: var(--gold-accent);">"Did you know that you have rights? The Constitution says you do, and so do I! Better Call Saul!"</div>
+          <div class="hero-quote-speaker">— Saul Goodman | Franchise Partner Portal</div>
+        </div>
+      </div>
+
+      <div class="grid-3" style="margin-bottom: 28px;">
+        <div class="glass-card">
+          <div style="font-family: var(--font-display); font-size: 1.2rem; color: var(--text-muted);">Total Revenue Earned</div>
+          <div style="font-family: var(--font-mono); font-size: 2.2rem; font-weight: 800; color: var(--crystal-cyan);" id="dash-revenue">₹0</div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);">From Completed Sales</div>
+        </div>
+        <div class="glass-card">
+          <div style="font-family: var(--font-display); font-size: 1.2rem; color: var(--text-muted);">Finished Orders</div>
+          <div style="font-family: var(--font-mono); font-size: 2.2rem; font-weight: 800; color: var(--emerald-green);" id="dash-finished-count">0</div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);">Delivered Successfully</div>
+        </div>
+        <div class="glass-card">
+          <div style="font-family: var(--font-display); font-size: 1.2rem; color: var(--text-muted);">Tamil Nadu Rank</div>
+          <div style="font-family: var(--font-mono); font-size: 2.2rem; font-weight: 800; color: var(--gold-accent);" id="dash-rank">#--</div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);">Leaderboard Standing</div>
+        </div>
+      </div>
+
+      <div class="glass-card">
+        <div class="card-title">
+          <span class="bb-periodic-badge"><span class="num">79</span><span class="sym">Au</span><span class="mass">196.96</span></span>
+          My Store Assigned Orders & Pipeline
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+            <thead>
+              <tr style="border-bottom: 1.5px solid var(--smoke-border); color: var(--text-muted); font-family: var(--font-mono); font-size: 0.8rem;">
+                <th style="padding: 12px;">ORDER ID</th>
+                <th style="padding: 12px;">CUSTOMER</th>
+                <th style="padding: 12px;">ITEMS</th>
+                <th style="padding: 12px;">REVENUE (₹)</th>
+                <th style="padding: 12px;">STATUS</th>
+              </tr>
+            </thead>
+            <tbody id="tbl-my-orders">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ROUTE 4: /leaderboard ==================== -->
+    <section class="tab-pane" id="route-leaderboard">
+      <div class="bb-hero-banner">
+        <img src="/assets/hazmat_suits.jpg" alt="Hazmat Suits Empire Business" class="hero-bg-img">
+        <div class="hero-overlay">
+          <div class="hero-quote-text">"You asked me if I was in the meth business or the money business. Neither. I'm in the empire business."</div>
+          <div class="hero-quote-speaker">— Walter White / Heisenberg | Empire Revenue Standings</div>
+        </div>
+      </div>
+
+      <div class="glass-card">
+        <div class="card-title">
+          <span class="bb-periodic-badge"><span class="num">28</span><span class="sym">Ni</span><span class="mass">58.693</span></span>
+          Tamil Nadu Network Revenue Ranking (Completed Sales ₹)
+        </div>
+        <div id="leaderboard-container">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ROUTE 5: /admin ==================== -->
+    <section class="tab-pane" id="route-admin">
+      <div class="bb-hero-banner" style="border-color: var(--crystal-cyan); height: 240px;">
+        <img src="/assets/rv_desert.jpg" alt="Gus Fring Executive Hub" class="hero-bg-img">
+        <div class="hero-overlay">
+          <div class="hero-quote-text" style="color: var(--crystal-cyan);">"A man provides. And he does it even when he's not appreciated, or respected, or even loved. He simply bears up and he does it."</div>
+          <div class="hero-quote-speaker">— Gustavo Fring | Executive Admin Control Hub</div>
+        </div>
+      </div>
+
+      <!-- Supabase Connection Status Bar -->
+      <div class="glass-card" style="margin-bottom: 24px; background: rgba(0, 230, 118, 0.08); border-color: var(--emerald-green);">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <strong style="color: var(--emerald-green); font-family: var(--font-mono); font-size: 0.95rem;">⚡ SUPABASE DATABASE INTEGRATION:</strong>
+            <span style="color: var(--text-muted); font-size: 0.85rem; margin-left: 8px;">Run <code style="color: var(--crystal-cyan); font-weight: 700;">schema.sql</code> in your Supabase SQL Editor to connect live!</span>
+          </div>
+          <span class="status-pill status-finished">Supabase Ready</span>
+        </div>
+      </div>
+
+      <!-- SECTION: Add New Franchise & Manage Existing Franchises -->
+      <div class="grid-2" style="margin-bottom: 28px;">
+        <!-- FORM 1: Add New Franchise Location -->
+        <div class="glass-card">
+          <div class="card-title">
+            <span class="bb-periodic-badge"><span class="num">57</span><span class="sym">Fr</span><span class="mass">138.9</span></span>
+            Add New Franchise Partner Location
+          </div>
+
+          <form id="form-admin-add-franchise">
+            <div class="form-group">
+              <label class="form-label">Franchise ID (Login Identifier)</label>
+              <input type="text" class="form-control" id="input-franchise-id" placeholder="e.g. FRAN-TIRUNELVELI" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Franchise Owner Name</label>
+              <input type="text" class="form-control" id="input-franchise-name" placeholder="e.g. Suresh Kumar" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Location / Region</label>
+              <input type="text" class="form-control" id="input-franchise-location" placeholder="e.g. Tirunelveli High Road" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">4-Digit Access PIN</label>
+              <input type="text" class="form-control" id="input-franchise-pin" maxlength="4" placeholder="8899" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Partner Type</label>
+              <select class="form-control" id="select-franchise-type" required>
+                <option value="Micro">Micro Franchise</option>
+                <option value="Master">Master Partner</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-primary" style="background: linear-gradient(135deg, #00E5FF 0%, #0088CC 100%); color: #000;">➕ ADD FRANCHISE PARTNER</button>
+          </form>
+        </div>
+
+        <!-- LIST: Existing Active Franchises & PINs -->
+        <div class="glass-card">
+          <div class="card-title">
+            <span class="bb-periodic-badge"><span class="num">11</span><span class="sym">Na</span><span class="mass">22.989</span></span>
+            Active Franchise Roster & Credentials
+          </div>
+
+          <div style="max-height: 420px; overflow-y: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+              <thead>
+                <tr style="border-bottom: 1.5px solid var(--smoke-border); color: var(--text-muted); font-family: var(--font-mono);">
+                  <th style="padding: 8px;">FRANCHISE ID</th>
+                  <th style="padding: 8px;">OWNER</th>
+                  <th style="padding: 8px;">LOCATION</th>
+                  <th style="padding: 8px;">PIN</th>
+                </tr>
+              </thead>
+              <tbody id="tbl-admin-franchises">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION: Order Assignment & Order Management -->
+      <div class="grid-2">
+        <div class="glass-card">
+          <div class="card-title">
+            <span class="bb-periodic-badge"><span class="num">29</span><span class="sym">Cu</span><span class="mass">63.546</span></span>
+            Assign Order to Franchise Owner
+          </div>
+
+          <form id="form-admin-add-order">
+            <div class="form-group">
+              <label class="form-label">Franchise Owner</label>
+              <select class="form-control" id="select-admin-franchise" required></select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Customer Name</label>
+              <input type="text" class="form-control" id="input-customer" placeholder="e.g. Saul Goodman" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Item / Product Details</label>
+              <input type="text" class="form-control" id="input-item" placeholder="e.g. iPhone 15 Pro Max 256GB" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Total Revenue Amount (₹)</label>
+              <input type="number" class="form-control" id="input-amount" placeholder="45000" min="1" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Initial Order Status</label>
+              <select class="form-control" id="select-status" required>
+                <option value="Pending">Pending ⏳</option>
+                <option value="Processing">Processing ⚙️</option>
+                <option value="Finished">Finished ✅</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-primary">SUBMIT & ASSIGN ORDER</button>
+          </form>
+        </div>
+
+        <div class="glass-card">
+          <div class="card-title">
+            <span class="bb-periodic-badge"><span class="num">74</span><span class="sym">W</span><span class="mass">183.84</span></span>
+            Network Order Status Manager
+          </div>
+
+          <div class="search-filter-bar">
+            <input type="text" class="search-input" id="search-admin-orders" placeholder="🔍 Search orders by ID or Customer..." onkeyup="filterAdminOrders()">
+          </div>
+
+          <div style="max-height: 400px; overflow-y: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+              <thead>
+                <tr style="border-bottom: 1.5px solid var(--smoke-border); color: var(--text-muted); font-family: var(--font-mono);">
+                  <th style="padding: 10px;">ORDER</th>
+                  <th style="padding: 10px;">FRANCHISE</th>
+                  <th style="padding: 10px;">REVENUE</th>
+                  <th style="padding: 10px;">STATUS ACTION</th>
+                </tr>
+              </thead>
+              <tbody id="tbl-admin-orders">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ROUTE 6: /directory ==================== -->
+    <section class="tab-pane" id="route-directory">
+      <div class="bb-hero-banner">
+        <img src="/assets/mike_ehrmantraut.jpg" alt="Mike Ehrmantraut" class="hero-bg-img">
+        <div class="hero-overlay">
+          <div class="hero-quote-text">"No half measures. You learn that in this business."</div>
+          <div class="hero-quote-speaker">— Mike Ehrmantraut | Network Quality & Directory</div>
+        </div>
+      </div>
+
+      <div class="glass-card" style="margin-bottom: 24px;">
+        <div class="card-title">
+          <span class="bb-periodic-badge"><span class="num">42</span><span class="sym">Mo</span><span class="mass">95.95</span></span>
+          Tamil Nadu Master & Micro Franchise Directory
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">
+          Showing active Master Partner Vinoth (Sivagangai) and regional Micro Franchise locations.
+        </p>
+      </div>
+
+      <div class="grid-3" id="grid-directory">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+  </main>
+
+  <script src="/supabaseClient.js"></script>
+  <script src="/script.js"></script>
+</body>
+</html>
