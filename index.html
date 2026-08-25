@@ -72,13 +72,13 @@
             <span>B2B Wholesale Franchise Owner Access Portal</span>
           </div>
           <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 18px;">
-            Enter your B2B Wholesale Franchise ID (e.g., <code style="color: var(--crystal-cyan); font-weight: 700;">FRAN-SIVAGANGAI</code>) and 4-digit PIN (<code style="color: var(--emerald-green); font-weight: 700;">9842</code>).
+            Enter your B2B Wholesale Franchise ID and 4-digit Access PIN.
           </p>
 
           <form id="form-login-b2b">
             <div class="form-group">
               <label class="form-label">B2B Franchise ID</label>
-              <input type="text" class="form-control" id="login-b2b-id" placeholder="e.g. FRAN-SIVAGANGAI" required>
+              <input type="text" class="form-control" id="login-b2b-id" placeholder="Enter Franchise ID" required>
             </div>
             <div class="form-group">
               <label class="form-label">4-Digit Access PIN</label>
@@ -86,12 +86,6 @@
             </div>
             <button type="submit" class="btn-primary">LOGIN TO B2B WHOLESALE PORTAL</button>
           </form>
-
-          <!-- Executive Admin Link Footer -->
-          <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center;">
-            <span style="font-size: 0.82rem; color: var(--text-muted);">Executive Administrator? </span>
-            <a href="/admin-login" style="color: var(--crystal-cyan); font-family: var(--font-mono); font-weight: 700; font-size: 0.82rem; text-decoration: none;" onclick="navigateRoute('/admin-login', event)">🛡️ Master Admin Login &rarr;</a>
-          </div>
         </div>
 
         <!-- B2C RETAIL STORE FRANCHISE LOGIN CARD -->
@@ -101,13 +95,13 @@
             <span>B2C Retail Store Franchise Owner Access Portal</span>
           </div>
           <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 18px;">
-            Enter your B2C Retail Store Franchise ID (e.g., <code style="color: var(--gold-accent); font-weight: 700;">RETAIL-TRICHY</code>) and 4-digit PIN (<code style="color: var(--gold-accent); font-weight: 700;">8811</code>).
+            Enter your B2C Retail Store Franchise ID and 4-digit Access PIN.
           </p>
 
           <form id="form-login-b2c">
             <div class="form-group">
               <label class="form-label">B2C Retail Store Franchise ID</label>
-              <input type="text" class="form-control" id="login-b2c-id" placeholder="e.g. RETAIL-TRICHY" required>
+              <input type="text" class="form-control" id="login-b2c-id" placeholder="Enter Retail Franchise ID" required>
             </div>
             <div class="form-group">
               <label class="form-label">4-Digit Access PIN</label>
@@ -115,12 +109,6 @@
             </div>
             <button type="submit" class="btn-primary" style="background: linear-gradient(135deg, #D4AF37 0%, #AA820A 100%); color: #000;">LOGIN TO B2C RETAIL STORE PORTAL</button>
           </form>
-
-          <!-- Executive Admin Link Footer -->
-          <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center;">
-            <span style="font-size: 0.82rem; color: var(--text-muted);">Executive Administrator? </span>
-            <a href="/admin-login" style="color: var(--crystal-cyan); font-family: var(--font-mono); font-weight: 700; font-size: 0.82rem; text-decoration: none;" onclick="navigateRoute('/admin-login', event)">🛡️ Master Admin Login &rarr;</a>
-          </div>
         </div>
 
       </div>
@@ -153,7 +141,7 @@
             </div>
             <div class="form-group">
               <label class="form-label">Master Admin PIN</label>
-              <input type="password" class="form-control" id="login-admin-pin" placeholder="Enter Admin PIN (Demo: 7777)" required>
+              <input type="password" class="form-control" id="login-admin-pin" placeholder="Enter Master Admin PIN" required>
             </div>
             <button type="submit" class="btn-primary" style="background: linear-gradient(135deg, #00E5FF 0%, #0088CC 100%); color: #000;">LOGIN TO EXECUTIVE ADMIN HUB</button>
           </form>
@@ -349,7 +337,7 @@
               </div>
               <div class="form-group">
                 <label class="form-label">4-Digit Access PIN</label>
-                <input type="text" class="form-control" id="input-b2b-franchise-pin" maxlength="4" placeholder="8899" required>
+                <input type="text" class="form-control" id="input-b2b-franchise-pin" maxlength="4" placeholder="••••" required>
               </div>
               <div class="form-group">
                 <label class="form-label">Partner Type</label>
@@ -479,7 +467,7 @@
               </div>
               <div class="form-group">
                 <label class="form-label">4-Digit Access PIN</label>
-                <input type="text" class="form-control" id="input-b2c-franchise-pin" maxlength="4" placeholder="8811" required>
+                <input type="text" class="form-control" id="input-b2c-franchise-pin" maxlength="4" placeholder="••••" required>
               </div>
               <div class="form-group">
                 <label class="form-label">Outlet Store Type</label>

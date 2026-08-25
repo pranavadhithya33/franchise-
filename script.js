@@ -300,7 +300,7 @@ function initForms() {
         showToast('Authenticated as Executive Admin');
         navigateRoute('/admin');
       } else {
-        alert('❌ Invalid Admin PIN! (Demo PIN: 7777)');
+        alert('❌ Invalid Admin PIN!');
       }
     });
   }
@@ -752,7 +752,7 @@ function renderDirectory() {
         <span>${f.location}</span>
       </div>
       <div style="font-weight: 700; color: var(--emerald-green); font-size: 1.15rem; margin-bottom: 6px;">${f.name}</div>
-      <div style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">ID: ${f.id} • PIN: ${f.pin}</div>
+      <div style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">ID: ${f.id}</div>
       <div style="margin-top: 14px;">
         <span class="status-pill status-finished">🏢 B2B Wholesale Partner</span>
       </div>
@@ -772,7 +772,7 @@ function renderDirectory() {
         <span>${f.location}</span>
       </div>
       <div style="font-weight: 700; color: var(--gold-accent); font-size: 1.15rem; margin-bottom: 6px;">${f.name}</div>
-      <div style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">ID: ${f.id} • PIN: ${f.pin}</div>
+      <div style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">ID: ${f.id}</div>
       <div style="margin-top: 14px;">
         <span class="status-pill status-pending" style="background: rgba(212,175,55,0.15); color: var(--gold-accent); border-color: var(--gold-accent);">🏪 B2C Retail Store Outlet</span>
       </div>
