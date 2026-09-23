@@ -1132,4 +1132,220 @@ select.form-control {
   gap: 2px;
 }
 
+/* ==========================================================================
+   ADVANCED MOBILE & TOUCHSCREEN OPTIMIZATIONS
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .app-navbar {
+    padding: 6px 10px;
+  }
+
+  .nav-top-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .brand-title {
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+  }
+
+  .brand-logo-img {
+    height: 26px;
+  }
+
+  .nav-contact-pill {
+    padding: 3px 8px;
+    font-size: 0.72rem;
+  }
+
+  .nav-login-btn {
+    padding: 4px 10px;
+    font-size: 0.85rem;
+  }
+
+  .user-status-pill {
+    max-width: 120px;
+    font-size: 0.65rem;
+    padding: 2px 6px;
+  }
+
+  .home-hero-banner {
+    height: auto;
+    min-height: 250px;
+  }
+
+  .home-hero-overlay {
+    padding: 16px;
+  }
+
+  .home-hero-title {
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .home-hero-subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+  }
+
+  .home-hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .hero-cta-btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    font-size: 1rem;
+    padding: 10px 14px;
+    min-height: 44px;
+  }
+
+  .metrics-ribbon {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .metric-card {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .metric-icon {
+    font-size: 1.4rem;
+  }
+
+  .metric-val {
+    font-size: 1.15rem;
+  }
+
+  .metric-label {
+    font-size: 0.68rem;
+  }
+
+  .leaderboard-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .leaderboard-filter-tabs {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .leaderboard-filter-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-tab-btn {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+    min-height: 38px;
+  }
+
+  .leaderboard-search-box {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .search-input {
+    width: 100%;
+    min-height: 42px;
+    font-size: 0.85rem;
+  }
+
+  .leaderboard-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px 14px;
+  }
+
+  .portal-switch-tabs, .admin-module-nav {
+    flex-direction: column;
+    gap: 6px;
+    padding: 4px;
+  }
+
+  .portal-tab-btn, .admin-module-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.95rem;
+    min-height: 44px;
+    justify-content: center;
+  }
+
+  .form-control, select.form-control, .btn-primary {
+    min-height: 44px;
+    font-size: 0.9rem;
+  }
+
+  .app-footer {
+    margin-top: 24px;
+    padding: 16px 12px;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .footer-contact {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-title {
+    font-size: 0.95rem;
+  }
+
+  .nav-contact-pill {
+    padding: 2px 6px;
+    font-size: 0.68rem;
+  }
+
+  .nav-login-btn {
+    padding: 3px 8px;
+    font-size: 0.78rem;
+  }
+
+  .home-hero-title {
+    font-size: 1.35rem;
+  }
+
+  .metrics-ribbon {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .metric-val {
+    font-size: 1rem;
+  }
+
+  .leaderboard-card {
+    padding: 10px 12px;
+  }
+}
+
+
 
