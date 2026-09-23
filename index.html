@@ -17,7 +17,7 @@
   <header class="app-navbar">
     <div class="nav-container">
       <div class="nav-top-row">
-        <a href="/login" class="brand-header" onclick="navigateRoute('/login', event)">
+        <a href="/" class="brand-header" onclick="navigateRoute('/', event)">
           <img src="/assets/bb_title_logo.jpg" alt="GUS Enterprise Logo" class="brand-logo-img">
           <div class="brand-title">
             <span class="highlight">GUS</span> ENTERPRISE PORTAL
@@ -25,14 +25,21 @@
         </a>
 
         <!-- Navigation Links -->
-        <ul class="nav-menu" id="main-nav-menu" style="display: none;">
+        <ul class="nav-menu" id="main-nav-menu">
           <!-- Dynamically injected via script.js -->
         </ul>
 
-        <div style="display: flex; align-items: center; gap: 6px; flex-shrink: 0;">
+        <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+          <a href="tel:7845156784" class="nav-contact-pill" title="Call GUS Helpline 7845156784">
+            <span class="contact-icon">📞</span>
+            <span class="contact-num">7845156784</span>
+          </a>
+
           <div class="user-status-pill" id="user-status-pill">
             <span id="user-status-text">🔒 Logged Out</span>
           </div>
+
+          <a href="/login" class="nav-login-btn" id="btn-login-nav" onclick="navigateRoute('/login', event)">🔑 LOGIN</a>
           <button class="logout-btn" id="btn-logout" style="display: none;" onclick="logoutUser()">LOGOUT</button>
         </div>
       </div>
@@ -42,7 +49,135 @@
   <!-- ==================== MAIN CONTENT CONTAINER ==================== -->
   <main class="main-content">
 
-    <!-- ==================== ROUTE 1: / or /login (HOMEPAGE DUAL B2B / B2C FRANCHISE OWNER LOGIN) ==================== -->
+    <!-- ==================== ROUTE 0: / or /home (PUBLIC LANDING HOME PAGE) ==================== -->
+    <section class="tab-pane" id="route-home">
+      <!-- Premium Hero Banner -->
+      <div class="bb-hero-banner home-hero-banner">
+        <img src="/assets/heisenberg_jesse.jpg" alt="GUS Dual Franchise Network" class="hero-bg-img">
+        <div class="hero-overlay home-hero-overlay">
+          <div class="hero-badge-strip">
+            <span class="bb-periodic-badge"><span class="num">31</span><span class="sym">Ga</span><span class="mass">69.7</span></span>
+            <span class="hero-sub-tag">B2B Wholesale & B2C Retail Store Empire Network</span>
+          </div>
+          <h1 class="home-hero-title">GUS ENTERPRISE FRANCHISE PORTAL</h1>
+          <p class="home-hero-subtitle">
+            Tamil Nadu's premier network powering wholesale distribution and retail outlet stores.
+          </p>
+          <div class="home-hero-cta-group">
+            <a href="/login" class="hero-cta-btn primary" onclick="navigateRoute('/login', event)">🔑 FRANCHISE LOGIN PORTAL</a>
+            <a href="/leaderboard" class="hero-cta-btn secondary" onclick="navigateRoute('/leaderboard', event)">🏆 EMPIRE STANDINGS</a>
+            <a href="tel:7845156784" class="hero-cta-btn phone-btn">📞 HELP: 7845156784</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Ribbon -->
+      <div class="metrics-ribbon">
+        <div class="metric-card">
+          <div class="metric-icon">💰</div>
+          <div class="metric-data">
+            <div class="metric-val" id="home-stat-total-rev">₹0</div>
+            <div class="metric-label">Network Revenue</div>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">🏬</div>
+          <div class="metric-data">
+            <div class="metric-val" id="home-stat-total-hubs">0</div>
+            <div class="metric-label">Active Outlets</div>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">📦</div>
+          <div class="metric-data">
+            <div class="metric-val" id="home-stat-total-orders">0</div>
+            <div class="metric-label">Finished Deliveries</div>
+          </div>
+        </div>
+        <div class="metric-card highlight-card">
+          <div class="metric-icon">📞</div>
+          <div class="metric-data">
+            <div class="metric-val" style="color: var(--emerald-green); font-size: 1.25rem;">7845156784</div>
+            <div class="metric-label">Direct Contact Helpline</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Empire Leaderboard Showcase -->
+      <div class="glass-card" style="margin-top: 24px;">
+        <div class="leaderboard-header-bar">
+          <div class="card-title" style="margin: 0;">
+            <span class="bb-periodic-badge"><span class="num">79</span><span class="sym">Au</span><span class="mass">196.96</span></span>
+            <div>
+              <span>🏆 Empire Progress & Top Performers Leaderboard</span>
+              <div style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-body); font-weight: 400; margin-top: 2px;">
+                Real-time performance rankings across B2B Wholesale Hubs and B2C Retail Stores.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leaderboard Filters & Search Bar -->
+        <div class="leaderboard-controls">
+          <div class="leaderboard-filter-tabs">
+            <button class="filter-tab-btn active" id="home-filter-all" onclick="setHomeLeaderboardFilter('all')">🌟 All Empire Partners</button>
+            <button class="filter-tab-btn" id="home-filter-b2b" onclick="setHomeLeaderboardFilter('b2b')">🏢 B2B Wholesale</button>
+            <button class="filter-tab-btn" id="home-filter-b2c" onclick="setHomeLeaderboardFilter('b2c')">🏪 B2C Retail Stores</button>
+          </div>
+          <div class="leaderboard-search-box">
+            <input type="text" id="search-home-leaderboard" class="search-input" placeholder="🔍 Search franchise name or location..." oninput="renderHomeLeaderboard()">
+          </div>
+        </div>
+
+        <!-- Dynamic Home Leaderboard Container -->
+        <div id="home-leaderboard-container" class="home-leaderboard-grid">
+          <!-- Rendered dynamically via script.js -->
+        </div>
+      </div>
+
+      <!-- Franchise Login CTA Banner -->
+      <div class="glass-card home-login-cta-card" style="margin-top: 24px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+          <div>
+            <h3 style="font-family: var(--font-display); font-size: 1.6rem; color: var(--emerald-green); margin: 0 0 6px 0;">
+              Are You an Authorized GUS Franchise Partner?
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">
+              Log in to your dedicated dashboard to manage bulk wholesale orders, retail store sales, tracking status, and personal rank.
+            </p>
+          </div>
+          <a href="/login" class="btn-primary" style="max-width: 260px; text-decoration: none; text-align: center; display: inline-flex; align-items: center; justify-content: center;" onclick="navigateRoute('/login', event)">
+            🔑 FRANCHISE LOGIN &rarr;
+          </a>
+        </div>
+      </div>
+
+      <!-- Contact Information Card -->
+      <div class="glass-card" style="margin-top: 20px; border-color: var(--crystal-cyan);">
+        <div class="card-title" style="color: var(--crystal-cyan);">
+          <span class="bb-periodic-badge" style="border-color: var(--crystal-cyan);"><span class="num">56</span><span class="sym">Ba</span><span class="mass">137.33</span></span>
+          <span>GUS Enterprise Contact & Support Center</span>
+        </div>
+        <div class="grid-3" style="margin-top: 14px;">
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase;">Direct Phone Hotline</div>
+            <div style="font-family: var(--font-mono); font-size: 1.25rem; font-weight: 800; color: var(--emerald-green); margin-top: 4px;">
+              <a href="tel:7845156784" style="color: inherit; text-decoration: none;">📞 7845156784</a>
+            </div>
+          </div>
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase;">Operations Territory</div>
+            <div style="font-weight: 700; color: var(--text-primary); margin-top: 4px;">Tamil Nadu, India</div>
+          </div>
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase;">Network Franchise Support</div>
+            <div style="font-weight: 700; color: var(--crystal-cyan); margin-top: 4px;">24/7 Priority Partner Support</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ROUTE 1: /login (HOMEPAGE DUAL B2B / B2C FRANCHISE OWNER LOGIN) ==================== -->
     <section class="tab-pane" id="route-login">
       <!-- High-Resolution Full-Width Hero Banner -->
       <div class="bb-hero-banner">
@@ -597,6 +732,20 @@
         <!-- Rendered dynamically -->
       </div>
     </section>
+
+    <!-- ==================== APP FOOTER ==================== -->
+    <footer class="app-footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <img src="/assets/bb_title_logo.jpg" alt="GUS Enterprise" class="brand-logo-img">
+          <span>GUS ENTERPRISE DUAL FRANCHISE NETWORK</span>
+        </div>
+        <div class="footer-contact">
+          <span>📞 Hotline Helpline: <a href="tel:7845156784" style="color: var(--emerald-green); font-weight: 700; text-decoration: none;">7845156784</a></span>
+          <span>📍 Territory: Tamil Nadu B2B & B2C Franchise Operations</span>
+        </div>
+      </div>
+    </footer>
 
   </main>
 

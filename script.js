@@ -44,7 +44,8 @@ let appState = {
   b2cFranchises: JSON.parse(localStorage.getItem('gus_b2c_franchises')) || INITIAL_B2C_FRANCHISES,
   b2cOrders: JSON.parse(localStorage.getItem('gus_b2c_orders')) || INITIAL_B2C_ORDERS,
   currentUser: JSON.parse(localStorage.getItem('gus_current_user')) || null,
-  activeAdminModule: 'b2b' // 'b2b' or 'b2c'
+  activeAdminModule: 'b2b', // 'b2b' or 'b2c'
+  homeLeaderboardFilter: 'all' // 'all', 'b2b', or 'b2c'
 };
 
 function saveState() {
@@ -131,13 +132,15 @@ function renderCurrentRoute() {
       window.history.replaceState({}, '', '/login');
       showSection('route-login');
     }
+  } else if (path === '/login') {
+    showSection('route-login');
   } else if (path === '/leaderboard') {
     showSection('route-leaderboard');
   } else if (path === '/directory') {
     showSection('route-directory');
   } else {
-    // Default Home Page -> B2B & B2C Dual Franchise Owner Login
-    showSection('route-login');
+    // Default Home Page -> Public Landing Home Page with Leaderboard & Contact
+    showSection('route-home');
   }
 
   renderAllViews();
@@ -152,45 +155,59 @@ function showSection(sectionId) {
 function updateNavbarState(currentPath) {
   const navMenu = document.getElementById('main-nav-menu');
   const userPill = document.getElementById('user-status-text');
+  const loginBtn = document.getElementById('btn-login-nav');
   const logoutBtn = document.getElementById('btn-logout');
 
+  navMenu.style.display = 'flex';
+
+  const isHomeActive = currentPath === '/' || currentPath === '/home';
+
   if (!appState.currentUser) {
-    navMenu.style.display = 'none';
-    logoutBtn.style.display = 'none';
+    if (loginBtn) loginBtn.style.display = 'inline-flex';
+    if (logoutBtn) logoutBtn.style.display = 'none';
     userPill.textContent = '🔒 Logged Out';
     userPill.style.color = 'var(--text-muted)';
+
+    navMenu.innerHTML = `
+      <li><a href="/" class="nav-link ${isHomeActive ? 'active' : ''}" onclick="navigateRoute('/', event)">🏠 Home</a></li>
+      <li><a href="/leaderboard" class="nav-link ${currentPath === '/leaderboard' ? 'active' : ''}" onclick="navigateRoute('/leaderboard', event)">🏆 Leaderboard</a></li>
+      <li><a href="/directory" class="nav-link ${currentPath === '/directory' ? 'active' : ''}" onclick="navigateRoute('/directory', event)">🌐 Directory</a></li>
+    `;
   } else if (appState.currentUser.role === 'B2B_Franchise') {
-    navMenu.style.display = 'flex';
-    logoutBtn.style.display = 'block';
-    userPill.textContent = `🏢 B2B Wholesale: ${appState.currentUser.name} (${appState.currentUser.id})`;
+    if (loginBtn) loginBtn.style.display = 'none';
+    if (logoutBtn) logoutBtn.style.display = 'block';
+    userPill.textContent = `🏢 B2B: ${appState.currentUser.name} (${appState.currentUser.id})`;
     userPill.style.color = 'var(--emerald-green)';
 
     navMenu.innerHTML = `
+      <li><a href="/" class="nav-link ${isHomeActive ? 'active' : ''}" onclick="navigateRoute('/', event)">🏠 Home</a></li>
       <li><a href="/b2b-dashboard" class="nav-link ${currentPath === '/b2b-dashboard' || currentPath === '/dashboard' ? 'active' : ''}" onclick="navigateRoute('/b2b-dashboard', event)">📊 B2B Dashboard</a></li>
       <li><a href="/leaderboard" class="nav-link ${currentPath === '/leaderboard' ? 'active' : ''}" onclick="navigateRoute('/leaderboard', event)">🏆 Empire Leaderboard</a></li>
-      <li><a href="/directory" class="nav-link ${currentPath === '/directory' ? 'active' : ''}" onclick="navigateRoute('/directory', event)">🌐 Network Directory</a></li>
+      <li><a href="/directory" class="nav-link ${currentPath === '/directory' ? 'active' : ''}" onclick="navigateRoute('/directory', event)">🌐 Directory</a></li>
     `;
   } else if (appState.currentUser.role === 'B2C_Franchise') {
-    navMenu.style.display = 'flex';
-    logoutBtn.style.display = 'block';
-    userPill.textContent = `🏪 B2C Retail Store: ${appState.currentUser.name} (${appState.currentUser.id})`;
+    if (loginBtn) loginBtn.style.display = 'none';
+    if (logoutBtn) logoutBtn.style.display = 'block';
+    userPill.textContent = `🏪 B2C: ${appState.currentUser.name} (${appState.currentUser.id})`;
     userPill.style.color = 'var(--gold-accent)';
 
     navMenu.innerHTML = `
-      <li><a href="/b2c-dashboard" class="nav-link ${currentPath === '/b2c-dashboard' ? 'active' : ''}" onclick="navigateRoute('/b2c-dashboard', event)">🏪 B2C Retail Dashboard</a></li>
+      <li><a href="/" class="nav-link ${isHomeActive ? 'active' : ''}" onclick="navigateRoute('/', event)">🏠 Home</a></li>
+      <li><a href="/b2c-dashboard" class="nav-link ${currentPath === '/b2c-dashboard' ? 'active' : ''}" onclick="navigateRoute('/b2c-dashboard', event)">🏪 B2C Dashboard</a></li>
       <li><a href="/leaderboard" class="nav-link ${currentPath === '/leaderboard' ? 'active' : ''}" onclick="navigateRoute('/leaderboard', event)">🏆 Empire Leaderboard</a></li>
-      <li><a href="/directory" class="nav-link ${currentPath === '/directory' ? 'active' : ''}" onclick="navigateRoute('/directory', event)">🌐 Network Directory</a></li>
+      <li><a href="/directory" class="nav-link ${currentPath === '/directory' ? 'active' : ''}" onclick="navigateRoute('/directory', event)">🌐 Directory</a></li>
     `;
   } else if (appState.currentUser.role === 'Admin') {
-    navMenu.style.display = 'flex';
-    logoutBtn.style.display = 'block';
-    userPill.textContent = `👑 Executive Admin (${appState.currentUser.id})`;
+    if (loginBtn) loginBtn.style.display = 'none';
+    if (logoutBtn) logoutBtn.style.display = 'block';
+    userPill.textContent = `👑 Admin (${appState.currentUser.id})`;
     userPill.style.color = 'var(--crystal-cyan)';
 
     navMenu.innerHTML = `
-      <li><a href="/admin" class="nav-link ${currentPath === '/admin' ? 'active' : ''}" onclick="navigateRoute('/admin', event)">🛡️ Executive Admin Hub</a></li>
+      <li><a href="/" class="nav-link ${isHomeActive ? 'active' : ''}" onclick="navigateRoute('/', event)">🏠 Home</a></li>
+      <li><a href="/admin" class="nav-link ${currentPath === '/admin' ? 'active' : ''}" onclick="navigateRoute('/admin', event)">🛡️ Admin Hub</a></li>
       <li><a href="/leaderboard" class="nav-link ${currentPath === '/leaderboard' ? 'active' : ''}" onclick="navigateRoute('/leaderboard', event)">🏆 Empire Leaderboard</a></li>
-      <li><a href="/directory" class="nav-link ${currentPath === '/directory' ? 'active' : ''}" onclick="navigateRoute('/directory', event)">🌐 Network Directory</a></li>
+      <li><a href="/directory" class="nav-link ${currentPath === '/directory' ? 'active' : ''}" onclick="navigateRoute('/directory', event)">🌐 Directory</a></li>
     `;
   }
 }
@@ -432,11 +449,141 @@ window.logoutUser = function() {
    ========================================================================== */
 
 function renderAllViews() {
+  renderHomeStatsAndLeaderboard();
   renderB2BDashboard();
   renderB2CDashboard();
   renderLeaderboard();
   renderAdminHub();
   renderDirectory();
+}
+
+window.setHomeLeaderboardFilter = function(filterMode) {
+  appState.homeLeaderboardFilter = filterMode;
+  ['all', 'b2b', 'b2c'].forEach(mode => {
+    const btn = document.getElementById(`home-filter-${mode}`);
+    if (btn) {
+      if (mode === filterMode) btn.classList.add('active');
+      else btn.classList.remove('active');
+    }
+  });
+  renderHomeStatsAndLeaderboard();
+};
+
+function renderHomeStatsAndLeaderboard() {
+  const container = document.getElementById('home-leaderboard-container');
+  if (!container) return;
+
+  // Calculate total network metrics
+  const finishedB2B = appState.b2bOrders.filter(o => o.status === 'Finished');
+  const finishedB2C = appState.b2cOrders.filter(o => o.status === 'Finished');
+  
+  const revB2B = finishedB2B.reduce((sum, o) => sum + Number(o.amount), 0);
+  const revB2C = finishedB2C.reduce((sum, o) => sum + Number(o.amount), 0);
+  const totalRev = revB2B + revB2C;
+  
+  const totalOutlets = appState.b2bFranchises.length + appState.b2cFranchises.length;
+  const totalOrders = finishedB2B.length + finishedB2C.length;
+
+  const statRevEl = document.getElementById('home-stat-total-rev');
+  const statHubsEl = document.getElementById('home-stat-total-hubs');
+  const statOrdersEl = document.getElementById('home-stat-total-orders');
+
+  if (statRevEl) statRevEl.textContent = `₹${totalRev.toLocaleString('en-IN')}`;
+  if (statHubsEl) statHubsEl.textContent = totalOutlets;
+  if (statOrdersEl) statOrdersEl.textContent = totalOrders;
+
+  // Build combined leaderboard list
+  const b2bList = calculateLeaderboard(appState.b2bFranchises, appState.b2bOrders).map(item => ({
+    ...item,
+    category: 'b2b',
+    categoryLabel: '🏢 B2B Wholesale'
+  }));
+
+  const b2cList = calculateLeaderboard(appState.b2cFranchises, appState.b2cOrders).map(item => ({
+    ...item,
+    category: 'b2c',
+    categoryLabel: '🏪 B2C Retail Outlet'
+  }));
+
+  let combined = [...b2bList, ...b2cList].sort((a, b) => b.revenue - a.revenue);
+
+  const maxRevenue = combined.length > 0 ? Math.max(...combined.map(p => p.revenue), 1) : 1;
+  const currentFilter = appState.homeLeaderboardFilter || 'all';
+  const searchQuery = (document.getElementById('search-home-leaderboard')?.value || '').toLowerCase();
+
+  if (currentFilter === 'b2b') {
+    combined = combined.filter(p => p.category === 'b2b');
+  } else if (currentFilter === 'b2c') {
+    combined = combined.filter(p => p.category === 'b2c');
+  }
+
+  if (searchQuery) {
+    combined = combined.filter(p => 
+      p.name.toLowerCase().includes(searchQuery) || 
+      p.location.toLowerCase().includes(searchQuery) ||
+      p.id.toLowerCase().includes(searchQuery)
+    );
+  }
+
+  container.innerHTML = '';
+
+  if (combined.length === 0) {
+    container.innerHTML = `<div style="text-align: center; padding: 24px; color: var(--text-muted); font-family: var(--font-mono);">No matching franchise partners found.</div>`;
+    return;
+  }
+
+  combined.forEach((item, index) => {
+    const rankNum = index + 1;
+    const isCurrentUser = appState.currentUser && appState.currentUser.id === item.id;
+    const progressPercent = Math.max(Math.round((item.revenue / maxRevenue) * 100), 6);
+
+    let rankIcon = `#${rankNum}`;
+    let crown = '';
+    let badgeClass = item.category === 'b2b' ? 'b2b-card' : 'b2c-card';
+    if (rankNum === 1) {
+      rankIcon = '👑 #1';
+      crown = '<span class="rank-crown">👑</span>';
+      badgeClass += ' rank-1-card';
+    } else if (rankNum === 2) rankIcon = '🥇 #2';
+    else if (rankNum === 3) rankIcon = '🥈 #3';
+
+    if (isCurrentUser) badgeClass += ' is-current-user';
+
+    const card = document.createElement('div');
+    card.className = `leaderboard-card ${badgeClass}`;
+
+    card.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 12px; flex-grow: 1;">
+        <div class="rank-badge ${rankNum === 1 ? 'rank-1' : ''}">${rankIcon}</div>
+        <div style="flex-grow: 1; min-width: 0;">
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <span style="font-weight: 800; font-size: 1.1rem; color: var(--text-primary);">${crown}${item.name}</span>
+            <span class="status-pill ${item.category === 'b2b' ? 'status-finished' : 'status-pending'}" style="font-size: 0.68rem;">${item.categoryLabel}</span>
+            ${isCurrentUser ? '<span class="status-pill status-processing" style="font-size: 0.68rem; background: rgba(0, 229, 255, 0.2); border-color: var(--crystal-cyan); color: var(--crystal-cyan);">⭐ YOUR FRANCHISE</span>' : ''}
+          </div>
+          <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 2px;">
+            📍 ${item.location} • ID: <span style="font-family: var(--font-mono); color: var(--text-primary);">${item.id}</span>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="leaderboard-progress-bar">
+            <div class="progress-fill ${rankNum === 1 ? 'gold' : ''}" style="width: ${progressPercent}%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: right; flex-shrink: 0;">
+        <div style="font-family: var(--font-mono); font-weight: 800; font-size: 1.3rem; color: ${item.category === 'b2b' ? 'var(--crystal-cyan)' : 'var(--gold-accent)'};">
+          ₹${item.revenue.toLocaleString('en-IN')}
+        </div>
+        <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">
+          ${item.completedOrderCount} Orders Finished
+        </div>
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
 }
 
 function renderB2BDashboard() {
